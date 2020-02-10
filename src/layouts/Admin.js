@@ -18,6 +18,11 @@ import styles from "assets/jss/material-dashboard-react/layouts/adminStyle.js";
 import bgImage from "assets/img/sidebar-2.jpg";
 import logo from "assets/img/reactlogo.png";
 
+import Amplify, { Auth, API } from 'aws-amplify';
+import { withAuthenticator } from 'aws-amplify-react';
+import awsconfig from './../aws-exports';
+Amplify.configure(awsconfig);
+
 let ps;
 
 const switchRoutes = (
@@ -40,7 +45,7 @@ const switchRoutes = (
 
 const useStyles = makeStyles(styles);
 
-export default function Admin({ ...rest }) {
+function Admin({ ...rest }) {
   // styles
   const classes = useStyles();
   // ref to help us initialize PerfectScrollbar on windows devices
@@ -131,3 +136,5 @@ export default function Admin({ ...rest }) {
     </div>
   );
 }
+
+export default withAuthenticator(Admin, true);
