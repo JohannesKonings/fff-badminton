@@ -32,10 +32,8 @@ export default function Tasks(props) {
     }
     setChecked(newChecked);
   };
-  const { tasksIndexes, tasks, rtlActive } = props;
-  const tableCellClasses = classnames(classes.tableCell, {
-    [classes.tableCellRTL]: rtlActive
-  });
+  const { tasksIndexes, tasks } = props;
+  const tableCellClasses = classnames(classes.tableCell);
   return (
     <Table className={classes.table}>
       <TableBody>
@@ -101,6 +99,5 @@ export default function Tasks(props) {
 Tasks.propTypes = {
   tasksIndexes: PropTypes.arrayOf(PropTypes.number),
   tasks: PropTypes.arrayOf(PropTypes.node),
-  rtlActive: PropTypes.bool,
   checkedIndexes: PropTypes.array
 };
