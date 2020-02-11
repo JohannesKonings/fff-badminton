@@ -7,12 +7,12 @@ type Game @model {
   id: ID!
   title: String!
   gameday: Gameday @connection(name: "GamedayGames")
-  player1: [Player] @connection(name: "GamePlayer")
-  player2: [Player] @connection(name: "GamePlayer")
+  player1: Player @connection(name: "GamePlayer")
+  player2: Player @connection(name: "GamePlayer")
   result: String!
 }
 type Player @model {
   id: ID!
   name: String
-  game: Game @connection(name: "GamePlayer")
+  game: [Game] @connection(name: "GamePlayer")
 }
