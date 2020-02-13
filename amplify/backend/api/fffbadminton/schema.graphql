@@ -1,6 +1,6 @@
 type Gameday @model {
   id: ID!
-  date: String!
+  date: AWSDate!
   games: [Game] @connection(name: "GamedayGames")
 }
 type Game @model {
