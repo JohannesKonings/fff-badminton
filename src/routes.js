@@ -28,6 +28,7 @@ import Language from "@material-ui/icons/Language";
 import DashboardPage from "views/Dashboard/Dashboard.js";
 import UserProfile from "views/UserProfile/UserProfile.js";
 import Player from "views/Player/Player.js";
+import Games from "views/Games/Games.js";
 import TableList from "views/TableList/TableList.js";
 import Typography from "views/Typography/Typography.js";
 import Icons from "views/Icons/Icons.js";
@@ -55,6 +56,13 @@ const dashboardRoutes = [
     name: "Player",
     icon: "accessible",
     component: Player,
+    layout: "/admin"
+  },
+  {
+    path: "/games",
+    name: "Games",
+    icon: "find_replace",
+    component: Games,
     layout: "/admin"
   },
   {
