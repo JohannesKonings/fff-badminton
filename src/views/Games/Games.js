@@ -10,13 +10,15 @@ import Card from "components/Card/Card.js";
 import CardHeader from "components/Card/CardHeader.js";
 import CardBody from "components/Card/CardBody.js";
 import Button from "components/CustomButtons/Button.js";
-import CustomInput from "components/CustomInput/CustomInput.js";
+
+import { SnackbarProvider, useSnackbar } from "notistack";
 
 import Amplify, { API, graphqlOperation } from "aws-amplify";
 import awsconfig from "./../../aws-exports";
 
 import { listGamedays } from "./../../graphql/queries";
 import { createGameday } from "./../../graphql/mutations";
+import { onCreateGameday } from "./../../graphql/subscriptions";
 
 import DateFnsUtils from "@date-io/date-fns";
 import {
@@ -62,6 +64,7 @@ const useStyles = makeStyles(styles);
 function Games() {
   const [gameDayItems, setGameDayItems] = useState([]);
   const [selectedDate, setSelectedDate] = useState(new Date());
+  const { enqueueSnackbar } = useSnackbar();
 
   const readGameDays = async () => {
     const allGameDays = await API.graphql(graphqlOperation(listGamedays));
@@ -69,32 +72,67 @@ function Games() {
 
     const allGameDayItems = allGameDays.data.listGamedays.items;
 
-    allGameDayItems.sort(function(a, b) {
-      return a.date - b.date;
-    });
     const tableArray = allGameDayItems.map(item => {
       console.log(item.id, item.date);
       return [item.id, item.date];
+    });
+
+    tableArray.sort(function(a, b) {
+      return a.id - b.id;
     });
 
     setGameDayItems(tableArray);
   };
 
   const addGameDay = async () => {
-      const d = selectedDate
-      const gameDayDateString = [d.getFullYear(), '-', ('0' + (d.getMonth() + 1)).slice(-2), '-', ('0' + d.getDate()).slice(-2)].join('');
-      console.log(gameDayDateString)
-      
+    const d = selectedDate;
+    const gameDayDateString = [
+      d.getFullYear(),
+      "-",
+      ("0" + (d.getMonth() + 1)).slice(-2),
+      "-",
+      ("0" + d.getDate()).slice(-2)
+    ].join("");
+    console.log(gameDayDateString);
+
     await API.graphql(
-      //graphqlOperation(createGameDay, { input: { date: gameDayDateString } })
-      //https://github.com/aws-amplify/amplify-ios/issues/278
-      //https://docs.aws.amazon.com/appsync/latest/devguide/scalars.html
-      graphqlOperation(createGameday, { input: { id: gameDayDateString,  date: gameDayDateString } })
+      graphqlOperation(createGameday, {
+        input: { id: gameDayDateString, date: gameDayDateString }
+      })
     );
+  };
+
+  const subscripeGameDay = async () => {
+    await API.graphql(graphqlOperation(onCreateGameday)).subscribe({
+      next: subonCreateGameday => {
+        console.log("subscription", subonCreateGameday);
+        const variant = "success";
+        enqueueSnackbar(
+          "Gamday created: " + subonCreateGameday.value.data.onCreateGameday.id,
+          { variant }
+        );
+
+        setGameDayItems(gameDayItems => [...gameDayItems, [
+          subonCreateGameday.value.data.onCreateGameday.id,
+          subonCreateGameday.value.data.onCreateGameday.date
+        ]]);
+
+        /*
+        newGameDayList.sort(function(a, b) {
+          return a.id - b.id;
+        });
+
+        setGameDayItems(newGameDayList)
+        */
+
+
+      }
+    });
   };
 
   useEffect(() => {
     readGameDays();
+    subscripeGameDay();
   }, []);
 
   function onClickCreateGameDay() {
@@ -158,4 +196,12 @@ function Games() {
   );
 }
 
-export default Games;
+//export default Games;
+
+export default function IntegrationNotistack() {
+  return (
+    <SnackbarProvider maxSnack={3}>
+      <Games />
+    </SnackbarProvider>
+  );
+}
