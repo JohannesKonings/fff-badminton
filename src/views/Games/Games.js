@@ -1,4 +1,4 @@
-import 'date-fns';
+import "date-fns";
 import React, { useState, useEffect } from "react";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
@@ -16,9 +16,13 @@ import Amplify, { API, graphqlOperation } from "aws-amplify";
 import awsconfig from "./../../aws-exports";
 
 import { listGamedays } from "./../../graphql/queries";
+import { createGameday } from "./../../graphql/mutations";
 
-import DateFnsUtils from '@date-io/date-fns';
-import { MuiPickersUtilsProvider, KeyboardDatePicker } from "@material-ui/pickers";
+import DateFnsUtils from "@date-io/date-fns";
+import {
+  MuiPickersUtilsProvider,
+  KeyboardDatePicker
+} from "@material-ui/pickers";
 
 Amplify.configure(awsconfig);
 
@@ -57,9 +61,7 @@ const useStyles = makeStyles(styles);
 //https://dev.to/joemsak/barebones-aws-amplify-react-graphql-app-5ae8
 function Games() {
   const [gameDayItems, setGameDayItems] = useState([]);
-  const [selectedDate, setSelectedDate] = useState(
-    new Date()
-  );
+  const [selectedDate, setSelectedDate] = useState(new Date());
 
   const readGameDays = async () => {
     const allGameDays = await API.graphql(graphqlOperation(listGamedays));
@@ -68,28 +70,35 @@ function Games() {
     const allGameDayItems = allGameDays.data.listGamedays.items;
 
     allGameDayItems.sort(function(a, b) {
-      return a.id - b.id;
+      return a.date - b.date;
     });
     const tableArray = allGameDayItems.map(item => {
-      console.log(item.id, item.name);
-      return [item.id, item.name];
+      console.log(item.id, item.date);
+      return [item.id, item.date];
     });
 
     setGameDayItems(tableArray);
   };
 
   const addGameDay = async () => {
+      const d = selectedDate
+      const gameDayDateString = [d.getFullYear(), '-', ('0' + (d.getMonth() + 1)).slice(-2), '-', ('0' + d.getDate()).slice(-2)].join('');
+      console.log(gameDayDateString)
+      
     await API.graphql(
-      graphqlOperation(createGameDay, { input: { date: selectedDate } })
-    )
-  }
+      //graphqlOperation(createGameDay, { input: { date: gameDayDateString } })
+      //https://github.com/aws-amplify/amplify-ios/issues/278
+      //https://docs.aws.amazon.com/appsync/latest/devguide/scalars.html
+      graphqlOperation(createGameday, { input: { id: gameDayDateString,  date: gameDayDateString } })
+    );
+  };
 
   useEffect(() => {
     readGameDays();
   }, []);
 
-  function createGameDay() {
-    console.log("create GameDay: " + selectedDate);  
+  function onClickCreateGameDay() {
+    console.log("create GameDay: " + selectedDate);
     addGameDay();
   }
 
@@ -114,7 +123,6 @@ function Games() {
             </GridContainer>
             <GridContainer justify="flex-end">
               <GridItem xs={12} sm={12} md={12}>
-
                 <MuiPickersUtilsProvider utils={DateFnsUtils}>
                   <KeyboardDatePicker
                     disableToolbar
@@ -131,7 +139,7 @@ function Games() {
                   />
                 </MuiPickersUtilsProvider>
 
-                <Button onClick={createGameDay} color="primary">
+                <Button onClick={onClickCreateGameDay} color="primary">
                   Create a Gameday
                 </Button>
               </GridItem>
