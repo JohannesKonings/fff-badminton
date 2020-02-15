@@ -10,6 +10,7 @@ import Card from "components/Card/Card.js";
 import CardHeader from "components/Card/CardHeader.js";
 import CardBody from "components/Card/CardBody.js";
 import Button from "components/CustomButtons/Button.js";
+import CustomInput from "components/CustomInput/CustomInput.js";
 
 import { SnackbarProvider, useSnackbar } from "notistack";
 
@@ -63,7 +64,9 @@ const useStyles = makeStyles(styles);
 //https://dev.to/joemsak/barebones-aws-amplify-react-graphql-app-5ae8
 function Games() {
   const [gameDayItems, setGameDayItems] = useState([]);
+  const [gameItems, setGameItems]       = useState([]);
   const [selectedDate, setSelectedDate] = useState(new Date());
+  
   const { enqueueSnackbar } = useSnackbar();
 
   const readGameDays = async () => {
@@ -112,10 +115,13 @@ function Games() {
           { variant }
         );
 
-        setGameDayItems(gameDayItems => [...gameDayItems, [
-          subonCreateGameday.value.data.onCreateGameday.id,
-          subonCreateGameday.value.data.onCreateGameday.date
-        ]]);
+        setGameDayItems(gameDayItems => [
+          ...gameDayItems,
+          [
+            subonCreateGameday.value.data.onCreateGameday.id,
+            subonCreateGameday.value.data.onCreateGameday.date
+          ]
+        ]);
 
         /*
         newGameDayList.sort(function(a, b) {
@@ -124,8 +130,6 @@ function Games() {
 
         setGameDayItems(newGameDayList)
         */
-
-
       }
     });
   };
@@ -140,14 +144,24 @@ function Games() {
     addGameDay();
   }
 
+  function onClickCreateGame() {
+    console.log("create Game: ");
+  }
+
   const classes = useStyles();
 
   const handleDateChange = date => {
     setSelectedDate(date);
   };
 
+  const selectedGameDay = gameDayRow => {
+    console.log("Games: " + gameDayRow);
+  };
+
   return (
     <GridContainer>
+      {/* GameDays */}
+
       <GridItem xs={12} sm={12} md={12}>
         <Card>
           <CardHeader color="primary">
@@ -188,6 +202,84 @@ function Games() {
               tableHeaderColor="primary"
               tableHead={["Id", "Date"]}
               tableData={gameDayItems}
+              selectedRow={selectedGameDay}
+            />
+          </CardBody>
+        </Card>
+      </GridItem>
+
+      {/* Games */}
+
+      <GridItem xs={12} sm={12} md={12}>
+        <Card>
+          <CardHeader color="primary">
+            <GridContainer justify="space-between" spacing={2}>
+              <GridItem xs={12} sm={12} md={12}>
+                <h4 className={classes.cardTitleWhite}>Games</h4>
+                <p className={classes.cardCategoryWhite}>
+                  All games per GameDay
+                </p>
+              </GridItem>
+            </GridContainer>
+
+            <GridContainer justify="space-between" spacing={2}>
+              <GridContainer>
+                <GridItem xs={12} sm={12} md={3}>
+                  <CustomInput
+                    labelText="Player1"
+                    id="player"
+                    formControlProps={{
+                      fullWidth: true
+                    }}
+                  />
+                </GridItem>
+                <GridItem xs={12} sm={12} md={3}>
+                  <CustomInput
+                    labelText="Player2"
+                    id="player2"
+                    formControlProps={{
+                      fullWidth: true
+                    }}
+                  />
+                </GridItem>
+                <GridItem xs={12} sm={12} md={2}>
+                  <CustomInput
+                    labelText="ResultPlayer1"
+                    id="resultPlayer1"
+                    formControlProps={{
+                      fullWidth: true
+                    }}
+                  />
+                </GridItem>
+                <GridItem xs={12} sm={12} md={2}>
+                  <CustomInput
+                    labelText="ResultPlayer2"
+                    id="resultPlayer2"
+                    formControlProps={{
+                      fullWidth: true
+                    }}
+                  />
+                </GridItem>
+
+                <GridItem xs={12} sm={12} md={12}>
+                  <Button onClick={onClickCreateGame} color="primary">
+                    Create a Game
+                  </Button>
+                </GridItem>
+              </GridContainer>
+            </GridContainer>
+          </CardHeader>
+          <CardBody>
+            <Table
+              tableHeaderColor="primary"
+              tableHead={[
+                "Id",
+                "Player1",
+                "Player2",
+                "ResultPlayer1",
+                "ResultPlayer2"
+              ]}
+              tableData={gameItems}
             />
           </CardBody>
         </Card>
