@@ -14,7 +14,13 @@ const useStyles = makeStyles(styles);
 
 export default function CustomTable(props) {
   const classes = useStyles();
-  const { tableHead, tableData, tableHeaderColor } = props;
+  const { tableHead, tableData, tableHeaderColor, selectedRow } = props;
+
+  const handleClick = (event, name) => {
+    console.log("tablecomponent: " + event + name);
+    selectedRow(event + name)
+  };
+
   return (
     <div className={classes.tableResponsive}>
       <Table className={classes.table}>
@@ -37,7 +43,12 @@ export default function CustomTable(props) {
         <TableBody>
           {tableData.map((prop, key) => {
             return (
-              <TableRow key={key} className={classes.tableBodyRow}>
+              <TableRow
+                key={key}
+                className={classes.tableBodyRow}
+                hover
+                onClick={event => handleClick(event, key)}
+              >
                 {prop.map((prop, key) => {
                   return (
                     <TableCell className={classes.tableCell} key={key}>
