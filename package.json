@@ -19,7 +19,7 @@
     "perfect-scrollbar": "1.5.0",
     "prop-types": "15.7.2",
     "react": "16.12.0",
-    "react-chartist": "0.14.2",
+    "react-chartist": "0.14.3",
     "react-dom": "16.12.0",
     "react-google-maps": "9.4.5",
     "react-router-dom": "5.1.2",
