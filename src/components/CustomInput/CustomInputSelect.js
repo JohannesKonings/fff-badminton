@@ -37,7 +37,7 @@ export default function CustomInputSelect(props) {
         onChange={handleChange}
       >
         {menuItems.map(option => (
-          <MenuItem key={option.id} value={option.name} name={option.id}>
+          <MenuItem key={option.id} value={option.id}>
             {option.name}
           </MenuItem>
         ))}

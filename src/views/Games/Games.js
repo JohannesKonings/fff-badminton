@@ -169,6 +169,15 @@ function Games() {
     console.log("create Game: ");
     console.log(selectedPlayer1);
     console.log(selectedPlayer2);
+    const player1 = playerItems.find( player => player.id === selectedPlayer1 );
+    const player2 = playerItems.find( player => player.id === selectedPlayer2 );
+    const key = selectedGameDay[1]
+    const gameId = [key] + '#' + selectedPlayer1 + '#' + selectedPlayer2
+    console.log(selectedGameDay);
+    console.log(gameId);
+    const games = [[gameId, player1.name, player2.name]];
+    setGameItems(games);
+    
   }
 
   const classes = useStyles();
@@ -181,9 +190,6 @@ function Games() {
     console.log(gameDayItems[key]);
 
     setSelectedGameDay(gameDayItems[key]);
-
-    const games = [[key.toString(), gameDayItems[key][0]]];
-    setGameItems(games);
   };
 
   const handleSelectedPlayer1 = player => {
