@@ -29,7 +29,6 @@ import DashboardPage from "views/Dashboard/Dashboard.js";
 import UserProfile from "views/UserProfile/UserProfile.js";
 import Player from "views/Player/Player.js";
 import Games from "views/Games/Games.js";
-import TableList from "views/TableList/TableList.js";
 
 const dashboardRoutes = [
   {
@@ -58,13 +57,6 @@ const dashboardRoutes = [
     name: "Games",
     icon: "find_replace",
     component: Games,
-    layout: "/admin"
-  },
-  {
-    path: "/table",
-    name: "Table List",
-    icon: "content_paste",
-    component: TableList,
     layout: "/admin"
   }
 ];
