@@ -64,8 +64,11 @@ const useStyles = makeStyles(styles);
 //https://dev.to/joemsak/barebones-aws-amplify-react-graphql-app-5ae8
 function Games() {
   const [gameDayItems, setGameDayItems] = useState([]);
-  const [gameItems, setGameItems]       = useState([]);
   const [selectedDate, setSelectedDate] = useState(new Date());
+
+  const [selectedGameDay, setSelectedGameDay] = useState([]);
+  const [gameItems, setGameItems]       = useState([]);
+
   
   const { enqueueSnackbar } = useSnackbar();
 
@@ -154,8 +157,16 @@ function Games() {
     setSelectedDate(date);
   };
 
-  const selectedGameDay = gameDayRow => {
-    console.log("Games: " + gameDayRow);
+  const handleGameDaySelection = (event, key) => {
+    console.log(gameDayItems[key]);
+
+    setSelectedGameDay(gameDayItems[key])
+
+    const games = [
+      [key.toString(), gameDayItems[key][0]],
+    ];
+    setGameItems(games)
+
   };
 
   return (
@@ -202,7 +213,7 @@ function Games() {
               tableHeaderColor="primary"
               tableHead={["Id", "Date"]}
               tableData={gameDayItems}
-              selectedRow={selectedGameDay}
+              selectedRow={handleGameDaySelection}
             />
           </CardBody>
         </Card>
@@ -215,7 +226,7 @@ function Games() {
           <CardHeader color="primary">
             <GridContainer justify="space-between" spacing={2}>
               <GridItem xs={12} sm={12} md={12}>
-                <h4 className={classes.cardTitleWhite}>Games</h4>
+                  <h4 className={classes.cardTitleWhite}>Games {selectedGameDay[1]}</h4>
                 <p className={classes.cardCategoryWhite}>
                   All games per GameDay
                 </p>

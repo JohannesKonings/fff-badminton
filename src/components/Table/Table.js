@@ -16,9 +16,8 @@ export default function CustomTable(props) {
   const classes = useStyles();
   const { tableHead, tableData, tableHeaderColor, selectedRow } = props;
 
-  const handleClick = (event, name) => {
-    console.log("tablecomponent: " + event + name);
-    selectedRow(event + name)
+  const handleClick = (event, key) => {
+    selectedRow(event, key)
   };
 
   return (
