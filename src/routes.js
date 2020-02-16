@@ -32,7 +32,6 @@ import Games from "views/Games/Games.js";
 import TableList from "views/TableList/TableList.js";
 import Typography from "views/Typography/Typography.js";
 import Icons from "views/Icons/Icons.js";
-import Maps from "views/Maps/Maps.js";
 import NotificationsPage from "views/Notifications/Notifications.js";
 import UpgradeToPro from "views/UpgradeToPro/UpgradeToPro.js";
 
@@ -84,13 +83,6 @@ const dashboardRoutes = [
     name: "Icons",
     icon: BubbleChart,
     component: Icons,
-    layout: "/admin"
-  },
-  {
-    path: "/maps",
-    name: "Maps",
-    icon: LocationOn,
-    component: Maps,
     layout: "/admin"
   },
   {
