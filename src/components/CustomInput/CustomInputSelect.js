@@ -1,5 +1,4 @@
 import React from "react";
-import classNames from "classnames";
 import PropTypes from "prop-types";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
@@ -15,7 +14,7 @@ export default function CustomInputSelect(props) {
   const classes = useStyles();
   const [player, setPlayer] = React.useState('');
 
-  const { labelText, id, formControlProps, error, success, menuItems, selectedPlayer } = props;
+  const { labelText, id, formControlProps, menuItems, selectedPlayer } = props;
 
   const handleChange = event => {
     setPlayer(event.target.value);

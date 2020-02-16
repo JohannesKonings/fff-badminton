@@ -68,14 +68,19 @@ function Games() {
   const [selectedDate, setSelectedDate] = useState(new Date());
 
   const [selectedGameDay, setSelectedGameDay] = useState([]);
-  const [gameItems, setGameItems]             = useState([]);
+  const [gameItems, setGameItems] = useState([]);
 
   const [playerItems, setPlayerItems] = useState([]);
-  const [selectedPlayer1, setSelectedPlayer1] = useState('');
-  const [selectedPlayer2, setSelectedPlayer2] = useState('');
+  const [selectedPlayer1, setSelectedPlayer1] = useState("");
+  const [selectedPlayer2, setSelectedPlayer2] = useState("");
 
-  
   const { enqueueSnackbar } = useSnackbar();
+
+  const onPageRendered = async () => {
+    readGameDays();
+    subscribeGameDay();
+    readPlayers();
+  };
 
   const readGameDays = async () => {
     const allGameDays = await API.graphql(graphqlOperation(listGamedays));
@@ -102,7 +107,6 @@ function Games() {
     const allPlayersItems = allPlayers.data.listPlayers.items;
 
     setPlayerItems(allPlayersItems);
-
   };
 
   const addGameDay = async () => {
@@ -123,7 +127,7 @@ function Games() {
     );
   };
 
-  const subscripeGameDay = async () => {
+  const subscribeGameDay = async () => {
     await API.graphql(graphqlOperation(onCreateGameday)).subscribe({
       next: subonCreateGameday => {
         console.log("subscription", subonCreateGameday);
@@ -153,9 +157,7 @@ function Games() {
   };
 
   useEffect(() => {
-    readGameDays();
-    subscripeGameDay();
-    readPlayers();
+    onPageRendered();
   }, []);
 
   function onClickCreateGameDay() {
@@ -178,25 +180,22 @@ function Games() {
   const handleGameDaySelection = (event, key) => {
     console.log(gameDayItems[key]);
 
-    setSelectedGameDay(gameDayItems[key])
+    setSelectedGameDay(gameDayItems[key]);
 
-    const games = [
-      [key.toString(), gameDayItems[key][0]],
-    ];
-    setGameItems(games)
-
+    const games = [[key.toString(), gameDayItems[key][0]]];
+    setGameItems(games);
   };
 
-  const handleSelectedPlayer1 = (player) => {
+  const handleSelectedPlayer1 = player => {
     console.log("1" + player);
 
-    setSelectedPlayer1(player)
+    setSelectedPlayer1(player);
   };
 
-  const handleSelectedPlayer2 = (player) => {
+  const handleSelectedPlayer2 = player => {
     console.log("2" + player);
 
-    setSelectedPlayer2(player)
+    setSelectedPlayer2(player);
   };
 
   return (
@@ -256,7 +255,9 @@ function Games() {
           <CardHeader color="primary">
             <GridContainer justify="space-between" spacing={2}>
               <GridItem xs={12} sm={12} md={12}>
-                  <h4 className={classes.cardTitleWhite}>Games {selectedGameDay[1]}</h4>
+                <h4 className={classes.cardTitleWhite}>
+                  Games {selectedGameDay[1]}
+                </h4>
                 <p className={classes.cardCategoryWhite}>
                   All games per GameDay
                 </p>
