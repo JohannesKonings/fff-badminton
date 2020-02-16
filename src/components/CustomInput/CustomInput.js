@@ -23,8 +23,7 @@ export default function CustomInput(props) {
     labelProps,
     inputProps,
     error,
-    success,
-    type
+    success
   } = props;
 
   const labelClasses = classNames({
@@ -61,7 +60,6 @@ export default function CustomInput(props) {
         }}
         id={id}
         {...inputProps}
-        type={type}
       />
       {error ? (
         <Clear className={classes.feedback + " " + classes.labelRootError} />
@@ -79,6 +77,5 @@ CustomInput.propTypes = {
   inputProps: PropTypes.object,
   formControlProps: PropTypes.object,
   error: PropTypes.bool,
-  success: PropTypes.bool,
-  type: PropTypes.object
+  success: PropTypes.bool
 };

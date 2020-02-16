@@ -246,9 +246,11 @@ function Games() {
                   <CustomInput
                     labelText="ResultPlayer1"
                     id="resultPlayer1"
-                    type="number"
                     formControlProps={{
                       fullWidth: true
+                    }}
+                    inputProps={{
+                      type: "number"
                     }}
                   />
                 </GridItem>
@@ -259,7 +261,6 @@ function Games() {
                     formControlProps={{
                       fullWidth: true
                     }}
-                    type="number"
                     inputProps={{
                       type: "number"
                     }}
