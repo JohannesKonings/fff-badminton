@@ -9,8 +9,8 @@ export const getGameday = /* GraphQL */ `
       games {
         items {
           id
-          title
-          result
+          resultPlayer1
+          resultPlayer2
         }
         nextToken
       }
@@ -39,7 +39,6 @@ export const getGame = /* GraphQL */ `
   query GetGame($id: ID!) {
     getGame(id: $id) {
       id
-      title
       gameday {
         id
         date
@@ -61,7 +60,8 @@ export const getGame = /* GraphQL */ `
         }
         nextToken
       }
-      result
+      resultPlayer1
+      resultPlayer2
     }
   }
 `;
@@ -74,7 +74,6 @@ export const listGames = /* GraphQL */ `
     listGames(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        title
         gameday {
           id
           date
@@ -85,7 +84,8 @@ export const listGames = /* GraphQL */ `
         player2 {
           nextToken
         }
-        result
+        resultPlayer1
+        resultPlayer2
       }
       nextToken
     }
@@ -98,7 +98,6 @@ export const getPlayer = /* GraphQL */ `
       name
       game {
         id
-        title
         gameday {
           id
           date
@@ -109,7 +108,8 @@ export const getPlayer = /* GraphQL */ `
         player2 {
           nextToken
         }
-        result
+        resultPlayer1
+        resultPlayer2
       }
     }
   }
@@ -126,8 +126,8 @@ export const listPlayers = /* GraphQL */ `
         name
         game {
           id
-          title
-          result
+          resultPlayer1
+          resultPlayer2
         }
       }
       nextToken

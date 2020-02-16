@@ -12,8 +12,8 @@ export const createGameday = /* GraphQL */ `
       games {
         items {
           id
-          title
-          result
+          resultPlayer1
+          resultPlayer2
         }
         nextToken
       }
@@ -31,8 +31,8 @@ export const updateGameday = /* GraphQL */ `
       games {
         items {
           id
-          title
-          result
+          resultPlayer1
+          resultPlayer2
         }
         nextToken
       }
@@ -50,8 +50,8 @@ export const deleteGameday = /* GraphQL */ `
       games {
         items {
           id
-          title
-          result
+          resultPlayer1
+          resultPlayer2
         }
         nextToken
       }
@@ -65,7 +65,6 @@ export const createGame = /* GraphQL */ `
   ) {
     createGame(input: $input, condition: $condition) {
       id
-      title
       gameday {
         id
         date
@@ -87,7 +86,8 @@ export const createGame = /* GraphQL */ `
         }
         nextToken
       }
-      result
+      resultPlayer1
+      resultPlayer2
     }
   }
 `;
@@ -98,7 +98,6 @@ export const updateGame = /* GraphQL */ `
   ) {
     updateGame(input: $input, condition: $condition) {
       id
-      title
       gameday {
         id
         date
@@ -120,7 +119,8 @@ export const updateGame = /* GraphQL */ `
         }
         nextToken
       }
-      result
+      resultPlayer1
+      resultPlayer2
     }
   }
 `;
@@ -131,7 +131,6 @@ export const deleteGame = /* GraphQL */ `
   ) {
     deleteGame(input: $input, condition: $condition) {
       id
-      title
       gameday {
         id
         date
@@ -153,7 +152,8 @@ export const deleteGame = /* GraphQL */ `
         }
         nextToken
       }
-      result
+      resultPlayer1
+      resultPlayer2
     }
   }
 `;
@@ -167,7 +167,6 @@ export const createPlayer = /* GraphQL */ `
       name
       game {
         id
-        title
         gameday {
           id
           date
@@ -178,7 +177,8 @@ export const createPlayer = /* GraphQL */ `
         player2 {
           nextToken
         }
-        result
+        resultPlayer1
+        resultPlayer2
       }
     }
   }
@@ -193,7 +193,6 @@ export const updatePlayer = /* GraphQL */ `
       name
       game {
         id
-        title
         gameday {
           id
           date
@@ -204,7 +203,8 @@ export const updatePlayer = /* GraphQL */ `
         player2 {
           nextToken
         }
-        result
+        resultPlayer1
+        resultPlayer2
       }
     }
   }
@@ -219,7 +219,6 @@ export const deletePlayer = /* GraphQL */ `
       name
       game {
         id
-        title
         gameday {
           id
           date
@@ -230,7 +229,8 @@ export const deletePlayer = /* GraphQL */ `
         player2 {
           nextToken
         }
-        result
+        resultPlayer1
+        resultPlayer2
       }
     }
   }

@@ -5,11 +5,11 @@ type Gameday @model {
 }
 type Game @model {
   id: ID!
-  title: String!
   gameday: Gameday @connection(name: "GamedayGames")
   player1: [Player] @connection(name: "GamePlayer")
   player2: [Player] @connection(name: "GamePlayer")
-  result: String!
+  resultPlayer1: Int!
+  resultPlayer2: Int!
 }
 type Player @model {
   id: ID!
