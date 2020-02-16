@@ -19,7 +19,7 @@ import Amplify, { API, graphqlOperation } from "aws-amplify";
 import awsconfig from "./../../aws-exports";
 
 import { listGamedays, listPlayers } from "./../../graphql/queries";
-import { createGameday } from "./../../graphql/mutations";
+import { createGameday, updateGameday } from "./../../graphql/mutations";
 import { onCreateGameday } from "./../../graphql/subscriptions";
 
 import DateFnsUtils from "@date-io/date-fns";
@@ -73,6 +73,8 @@ function Games() {
   const [playerItems, setPlayerItems] = useState([]);
   const [selectedPlayer1, setSelectedPlayer1] = useState("");
   const [selectedPlayer2, setSelectedPlayer2] = useState("");
+  const [resultPlayer1, setResultPlayer1] = useState("");
+  const [resultPlayer2, setResultPlayer2] = useState("");
 
   const { enqueueSnackbar } = useSnackbar();
 
@@ -89,9 +91,9 @@ function Games() {
     const allGameDayItems = allGameDays.data.listGamedays.items;
 
     const tableArray = allGameDayItems.map(item => {
-      console.log(item.id, item.date);
       return [item.id, item.date];
     });
+    console.log(tableArray);
 
     tableArray.sort(function(a, b) {
       return a.id - b.id;
@@ -123,6 +125,24 @@ function Games() {
     await API.graphql(
       graphqlOperation(createGameday, {
         input: { id: gameDayDateString, date: gameDayDateString }
+      })
+    );
+  };
+
+  const updateGameDay = async () => {
+    const d = selectedDate;
+    const gameDayDateString = [
+      d.getFullYear(),
+      "-",
+      ("0" + (d.getMonth() + 1)).slice(-2),
+      "-",
+      ("0" + d.getDate()).slice(-2)
+    ].join("");
+    console.log(gameDayDateString);
+
+    await API.graphql(
+      graphqlOperation(updateGameday, {
+        input: { id: selectedGameDay[0], date: selectedGameDay[1],  }
       })
     );
   };
@@ -175,8 +195,15 @@ function Games() {
     const gameId = [key] + '#' + selectedPlayer1 + '#' + selectedPlayer2
     console.log(selectedGameDay);
     console.log(gameId);
-    const games = [[gameId, player1.name, player2.name]];
-    setGameItems(games);
+    const games = [gameId, player1.name, player2.name, resultPlayer1, resultPlayer2];
+    //setGameItems(games)
+
+    setGameItems(gameItems => [
+      ...gameItems,
+      games
+    ]);
+
+    console.log(gameItems)
     
   }
 
@@ -192,16 +219,20 @@ function Games() {
     setSelectedGameDay(gameDayItems[key]);
   };
 
-  const handleSelectedPlayer1 = player => {
-    console.log("1" + player);
-
-    setSelectedPlayer1(player);
+  const handleSelectedPlayer1 = value => {
+    setSelectedPlayer1(value);
   };
 
-  const handleSelectedPlayer2 = player => {
-    console.log("2" + player);
+  const handleSelectedPlayer2 = value => {
+    setSelectedPlayer2(value);
+  };
 
-    setSelectedPlayer2(player);
+  const handleResultPlayer1 = value => {
+    setResultPlayer1(value);
+  };
+
+  const handleResultPlayer2 = value => {
+    setResultPlayer2(value);
   };
 
   return (
@@ -280,7 +311,7 @@ function Games() {
                       fullWidth: true
                     }}
                     menuItems={playerItems}
-                    selectedPlayer={handleSelectedPlayer1}
+                    textFieldValue={handleSelectedPlayer1}
                   />
                 </GridItem>
                 <GridItem xs={12} sm={12} md={3}>
@@ -291,7 +322,7 @@ function Games() {
                       fullWidth: true
                     }}
                     menuItems={playerItems}
-                    selectedPlayer={handleSelectedPlayer2}
+                    textFieldValue={handleSelectedPlayer2}
                   />
                 </GridItem>
                 <GridItem xs={12} sm={12} md={2}>
@@ -304,6 +335,7 @@ function Games() {
                     inputProps={{
                       type: "number"
                     }}
+                    textFieldValue={handleResultPlayer1}
                   />
                 </GridItem>
                 <GridItem xs={12} sm={12} md={2}>
@@ -316,6 +348,7 @@ function Games() {
                     inputProps={{
                       type: "number"
                     }}
+                    textFieldValue={handleResultPlayer2}
                   />
                 </GridItem>
 
