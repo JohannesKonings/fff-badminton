@@ -11,13 +11,14 @@ import CardHeader from "components/Card/CardHeader.js";
 import CardBody from "components/Card/CardBody.js";
 import Button from "components/CustomButtons/Button.js";
 import CustomInput from "components/CustomInput/CustomInput.js";
+import CustomInputSelect from "components/CustomInput/CustomInputSelect.js";
 
 import { SnackbarProvider, useSnackbar } from "notistack";
 
 import Amplify, { API, graphqlOperation } from "aws-amplify";
 import awsconfig from "./../../aws-exports";
 
-import { listGamedays } from "./../../graphql/queries";
+import { listGamedays, listPlayers } from "./../../graphql/queries";
 import { createGameday } from "./../../graphql/mutations";
 import { onCreateGameday } from "./../../graphql/subscriptions";
 
@@ -67,7 +68,11 @@ function Games() {
   const [selectedDate, setSelectedDate] = useState(new Date());
 
   const [selectedGameDay, setSelectedGameDay] = useState([]);
-  const [gameItems, setGameItems]       = useState([]);
+  const [gameItems, setGameItems]             = useState([]);
+
+  const [playerItems, setPlayerItems] = useState([]);
+  const [selectedPlayer1, setSelectedPlayer1] = useState('');
+  const [selectedPlayer2, setSelectedPlayer2] = useState('');
 
   
   const { enqueueSnackbar } = useSnackbar();
@@ -88,6 +93,16 @@ function Games() {
     });
 
     setGameDayItems(tableArray);
+  };
+
+  const readPlayers = async () => {
+    const allPlayers = await API.graphql(graphqlOperation(listPlayers));
+    console.log(allPlayers.data.listPlayers.items);
+
+    const allPlayersItems = allPlayers.data.listPlayers.items;
+
+    setPlayerItems(allPlayersItems);
+
   };
 
   const addGameDay = async () => {
@@ -140,6 +155,7 @@ function Games() {
   useEffect(() => {
     readGameDays();
     subscripeGameDay();
+    readPlayers();
   }, []);
 
   function onClickCreateGameDay() {
@@ -149,6 +165,8 @@ function Games() {
 
   function onClickCreateGame() {
     console.log("create Game: ");
+    console.log(selectedPlayer1);
+    console.log(selectedPlayer2);
   }
 
   const classes = useStyles();
@@ -167,6 +185,18 @@ function Games() {
     ];
     setGameItems(games)
 
+  };
+
+  const handleSelectedPlayer1 = (player) => {
+    console.log("1" + player);
+
+    setSelectedPlayer1(player)
+  };
+
+  const handleSelectedPlayer2 = (player) => {
+    console.log("2" + player);
+
+    setSelectedPlayer2(player)
   };
 
   return (
@@ -236,21 +266,25 @@ function Games() {
             <GridContainer justify="space-between" spacing={2}>
               <GridContainer>
                 <GridItem xs={12} sm={12} md={3}>
-                  <CustomInput
+                  <CustomInputSelect
                     labelText="Player1"
-                    id="player"
+                    id="player1"
                     formControlProps={{
                       fullWidth: true
                     }}
+                    menuItems={playerItems}
+                    selectedPlayer={handleSelectedPlayer1}
                   />
                 </GridItem>
                 <GridItem xs={12} sm={12} md={3}>
-                  <CustomInput
+                  <CustomInputSelect
                     labelText="Player2"
                     id="player2"
                     formControlProps={{
                       fullWidth: true
                     }}
+                    menuItems={playerItems}
+                    selectedPlayer={handleSelectedPlayer2}
                   />
                 </GridItem>
                 <GridItem xs={12} sm={12} md={2}>
