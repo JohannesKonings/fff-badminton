@@ -49,7 +49,7 @@
   "homepage": "https://www.fff-badminton.de/#/dashboard",
   "optionalDependencies": {
     "@types/markerclustererplus": "2.1.33",
-    "ajv": "6.11.0",
+    "ajv": "6.12.0",
     "typescript": "3.7.5"
   },
   "devDependencies": {
