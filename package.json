@@ -10,7 +10,7 @@
     "@material-ui/icons": "4.9.1",
     "@material-ui/pickers": "^3.2.10",
     "aws-amplify": "2.2.6",
-    "aws-amplify-react": "3.1.6",
+    "aws-amplify-react": "3.1.7",
     "chartist": "0.11.4",
     "classnames": "2.2.6",
     "date-fns": "^2.9.0",
