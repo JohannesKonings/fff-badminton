@@ -73,18 +73,22 @@ export const createGame = /* GraphQL */ `
         }
       }
       player1 {
-        items {
+        id
+        name
+        game {
           id
-          name
+          resultPlayer1
+          resultPlayer2
         }
-        nextToken
       }
       player2 {
-        items {
+        id
+        name
+        game {
           id
-          name
+          resultPlayer1
+          resultPlayer2
         }
-        nextToken
       }
       resultPlayer1
       resultPlayer2
@@ -106,18 +110,22 @@ export const updateGame = /* GraphQL */ `
         }
       }
       player1 {
-        items {
+        id
+        name
+        game {
           id
-          name
+          resultPlayer1
+          resultPlayer2
         }
-        nextToken
       }
       player2 {
-        items {
+        id
+        name
+        game {
           id
-          name
+          resultPlayer1
+          resultPlayer2
         }
-        nextToken
       }
       resultPlayer1
       resultPlayer2
@@ -139,18 +147,22 @@ export const deleteGame = /* GraphQL */ `
         }
       }
       player1 {
-        items {
+        id
+        name
+        game {
           id
-          name
+          resultPlayer1
+          resultPlayer2
         }
-        nextToken
       }
       player2 {
-        items {
+        id
+        name
+        game {
           id
-          name
+          resultPlayer1
+          resultPlayer2
         }
-        nextToken
       }
       resultPlayer1
       resultPlayer2
@@ -172,10 +184,12 @@ export const createPlayer = /* GraphQL */ `
           date
         }
         player1 {
-          nextToken
+          id
+          name
         }
         player2 {
-          nextToken
+          id
+          name
         }
         resultPlayer1
         resultPlayer2
@@ -198,10 +212,12 @@ export const updatePlayer = /* GraphQL */ `
           date
         }
         player1 {
-          nextToken
+          id
+          name
         }
         player2 {
-          nextToken
+          id
+          name
         }
         resultPlayer1
         resultPlayer2
@@ -224,10 +240,12 @@ export const deletePlayer = /* GraphQL */ `
           date
         }
         player1 {
-          nextToken
+          id
+          name
         }
         player2 {
-          nextToken
+          id
+          name
         }
         resultPlayer1
         resultPlayer2
