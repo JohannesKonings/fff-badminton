@@ -18,7 +18,7 @@ import { SnackbarProvider, useSnackbar } from "notistack";
 import Amplify, { API, graphqlOperation } from "aws-amplify";
 import awsconfig from "./../../aws-exports";
 
-import { listGamedays, listPlayers } from "./../../graphql/queries";
+import { listGamedays, listGames, listPlayers } from "./../../graphql/queries";
 import { createGameday, updateGameday } from "./../../graphql/mutations";
 import { onCreateGameday } from "./../../graphql/subscriptions";
 
@@ -102,6 +102,35 @@ function Games() {
     setGameDayItems(tableArray);
   };
 
+  const readGames = async () => {
+    console.log("start read Games");
+    console.log("selected GameDay" + selectedGameDay);
+
+    const allGames = await API.graphql(
+      graphqlOperation(listGames, {
+        filter: { id: { beginsWith: selectedGameDay } }
+      })
+    );
+    console.log(allGames.data.listGames.items);
+
+    const allGamesItems = allGames.data.listGames.items;
+
+    const tableArray = allGamesItems.map(item => {
+      console.log(item.Player1);
+      return [
+        item.id,
+        item.Player1,
+        item.Player2,
+        item.resultPlayer1,
+        item.resultPlayer2
+      ];
+    });
+
+    console.log(tableArray);
+
+    setGameItems(tableArray);
+  };
+
   const readPlayers = async () => {
     const allPlayers = await API.graphql(graphqlOperation(listPlayers));
     console.log(allPlayers.data.listPlayers.items);
@@ -142,7 +171,7 @@ function Games() {
 
     await API.graphql(
       graphqlOperation(updateGameday, {
-        input: { id: selectedGameDay[0], date: selectedGameDay[1] }
+        input: { id: selectedGameDay[0], date: selectedGameDay[1],  }
       })
     );
   };
@@ -218,9 +247,14 @@ function Games() {
   };
 
   const handleGameDaySelection = (event, key) => {
-    console.log(gameDayItems[key]);
+    console.log(key);
+    console.log(gameDayItems);
+    console.log(gameDayItems[key][0]);
 
-    setSelectedGameDay(gameDayItems[key]);
+    setSelectedGameDay(gameDayItems[key][0]);
+    console.log(selectedGameDay);
+    console.log("selected Game Day:" + selectedGameDay);
+    readGames();
   };
 
   const handleSelectedPlayer1 = value => {
