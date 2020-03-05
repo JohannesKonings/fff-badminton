@@ -142,7 +142,7 @@ function Games() {
 
     await API.graphql(
       graphqlOperation(updateGameday, {
-        input: { id: selectedGameDay[0], date: selectedGameDay[1],  }
+        input: { id: selectedGameDay[0], date: selectedGameDay[1] }
       })
     );
   };
@@ -189,22 +189,26 @@ function Games() {
     console.log("create Game: ");
     console.log(selectedPlayer1);
     console.log(selectedPlayer2);
-    const player1 = playerItems.find( player => player.id === selectedPlayer1 );
-    const player2 = playerItems.find( player => player.id === selectedPlayer2 );
-    const key = selectedGameDay[1]
-    const gameId = [key] + '#' + selectedPlayer1 + '#' + selectedPlayer2
+    const player1 = playerItems.find(player => player.id === selectedPlayer1);
+    const player2 = playerItems.find(player => player.id === selectedPlayer2);
+    const key = selectedGameDay[1];
+    const gameId = [key] + "#" + selectedPlayer1 + "#" + selectedPlayer2;
     console.log(selectedGameDay);
     console.log(gameId);
-    const games = [gameId, player1.name, player2.name, resultPlayer1, resultPlayer2];
+    const games = [
+      gameId,
+      player1.name,
+      player2.name,
+      resultPlayer1,
+      resultPlayer2
+    ];
     //setGameItems(games)
 
-    setGameItems(gameItems => [
-      ...gameItems,
-      games
-    ]);
+    setGameItems(gameItems => [...gameItems, games]);
 
-    console.log(gameItems)
-    
+    console.log(gameItems);
+
+    updateGameDay();
   }
 
   const classes = useStyles();
