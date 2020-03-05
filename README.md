@@ -1,6 +1,5 @@
 # fff-badminton
 
-![version](https://img.shields.io/badge/version-1.8.0-blue.svg) 
 ![license](https://img.shields.io/badge/license-MIT-blue.svg) 
 ![GitHub issues](https://img.shields.io/github/issues/JohannesKonings/fff-badminton)
 ![GitHub closed issues](https://img.shields.io/github/issues-closed/JohannesKonings/fff-badminton)
