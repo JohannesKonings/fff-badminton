@@ -3,7 +3,7 @@
 ![license](https://img.shields.io/badge/license-MIT-blue.svg) 
 ![GitHub issues](https://img.shields.io/github/issues/JohannesKonings/fff-badminton)
 ![GitHub closed issues](https://img.shields.io/github/issues-closed/JohannesKonings/fff-badminton)
-
+[![Known Vulnerabilities](https://snyk.io/test/github/JohannesKonings/fff-badminton/badge.svg)](https://snyk.io/test/github/JohannesKonings/fff-badminton)
 ![test](https://github.com/JohannesKonings/fff-badminton/workflows/test/badge.svg)
 
 <!--https://github.com/badges/shields-->
