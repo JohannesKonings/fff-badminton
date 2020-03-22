@@ -18,9 +18,9 @@ import { SnackbarProvider, useSnackbar } from "notistack";
 import Amplify, { API, graphqlOperation } from "aws-amplify";
 import awsconfig from "./../../aws-exports";
 
-import { listGamedays, listPlayers } from "./../../graphql/queries";
-import { createGameday, updateGameday } from "./../../graphql/mutations";
-import { onCreateGameday } from "./../../graphql/subscriptions";
+import { listGamedays, listGames, listPlayers } from "./../../graphql/queries";
+import { createGameday, createGame } from "./../../graphql/mutations";
+import { onCreateGameday, onCreateGame } from "./../../graphql/subscriptions";
 
 import DateFnsUtils from "@date-io/date-fns";
 import {
@@ -82,6 +82,7 @@ function Games() {
     readGameDays();
     subscribeGameDay();
     readPlayers();
+    subscribeGame();
   };
 
   const readGameDays = async () => {
@@ -100,6 +101,28 @@ function Games() {
     });
 
     setGameDayItems(tableArray);
+  };
+
+  const readGames = async gameDayId => {
+    const allGames = await API.graphql(
+      graphqlOperation(listGames, {
+        filter: { id: { beginsWith: gameDayId } }
+      })
+    );
+
+    const allGamesItems = allGames.data.listGames.items;
+
+    const tableArray = allGamesItems.map(item => {
+      return [
+        item.id,
+        item.player1.name,
+        item.player2.name,
+        item.resultPlayer1.toString(),
+        item.resultPlayer2.toString()
+      ];
+    });
+
+    setGameItems(tableArray);
   };
 
   const readPlayers = async () => {
@@ -129,7 +152,14 @@ function Games() {
     );
   };
 
-  const updateGameDay = async () => {
+  const addGame = async (
+    gameDayId,
+    gameId,
+    player1Id,
+    player2Id,
+    resultPlayer1,
+    resultPlayer2
+  ) => {
     const d = selectedDate;
     const gameDayDateString = [
       d.getFullYear(),
@@ -141,8 +171,15 @@ function Games() {
     console.log(gameDayDateString);
 
     await API.graphql(
-      graphqlOperation(updateGameday, {
-        input: { id: selectedGameDay[0], date: selectedGameDay[1] }
+      graphqlOperation(createGame, {
+        input: {
+          id: gameId,
+          gameGamedayId: gameDayId,
+          gamePlayer1Id: player1Id,
+          gamePlayer2Id: player2Id,
+          resultPlayer1: resultPlayer1,
+          resultPlayer2: resultPlayer2
+        }
       })
     );
   };
@@ -164,14 +201,29 @@ function Games() {
             subonCreateGameday.value.data.onCreateGameday.date
           ]
         ]);
+      }
+    });
+  };
 
-        /*
-        newGameDayList.sort(function(a, b) {
-          return a.id - b.id;
-        });
+  const subscribeGame = async () => {
+    await API.graphql(graphqlOperation(onCreateGame)).subscribe({
+      next: subonCreateGame => {
+        const variant = "success";
+        enqueueSnackbar(
+          "Game created: " + subonCreateGame.value.data.onCreateGame.id,
+          { variant }
+        );
 
-        setGameDayItems(newGameDayList)
-        */
+        setGameItems(gameItems => [
+          ...gameItems,
+          [
+            subonCreateGame.value.data.onCreateGame.id,
+            subonCreateGame.value.data.onCreateGame.player1.name,
+            subonCreateGame.value.data.onCreateGame.player2.name,
+            subonCreateGame.value.data.onCreateGame.resultPlayer1.toString(),
+            subonCreateGame.value.data.onCreateGame.resultPlayer2.toString()
+          ]
+        ]);
       }
     });
   };
@@ -191,10 +243,11 @@ function Games() {
     console.log(selectedPlayer2);
     const player1 = playerItems.find(player => player.id === selectedPlayer1);
     const player2 = playerItems.find(player => player.id === selectedPlayer2);
-    const key = selectedGameDay[1];
-    const gameId = [key] + "#" + selectedPlayer1 + "#" + selectedPlayer2;
+    const gameDayId = selectedGameDay[1];
+    const gameId = [gameDayId] + "#" + selectedPlayer1 + "#" + selectedPlayer2;
     console.log(selectedGameDay);
     console.log(gameId);
+    /*
     const games = [
       gameId,
       player1.name,
@@ -202,13 +255,17 @@ function Games() {
       resultPlayer1,
       resultPlayer2
     ];
-    //setGameItems(games)
 
     setGameItems(gameItems => [...gameItems, games]);
-
-    console.log(gameItems);
-
-    updateGameDay();
+*/
+    addGame(
+      gameDayId,
+      gameId,
+      player1.id,
+      player2.id,
+      resultPlayer1,
+      resultPlayer2
+    );
   }
 
   const classes = useStyles();
@@ -218,8 +275,8 @@ function Games() {
   };
 
   const handleGameDaySelection = (event, key) => {
-    console.log(gameDayItems[key]);
-
+    let selectedGameDayFromState = gameDayItems[key][0];
+    readGames(selectedGameDayFromState);
     setSelectedGameDay(gameDayItems[key]);
   };
 

@@ -17,7 +17,7 @@ export default function CustomTable(props) {
   const { tableHead, tableData, tableHeaderColor, selectedRow } = props;
 
   const handleClick = (event, key) => {
-    selectedRow(event, key)
+    selectedRow(event, key);
   };
 
   return (
@@ -79,5 +79,6 @@ CustomTable.propTypes = {
     "gray"
   ]),
   tableHead: PropTypes.arrayOf(PropTypes.string),
-  tableData: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.string))
+  tableData: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.string)),
+  selectedRow: PropTypes.func
 };
