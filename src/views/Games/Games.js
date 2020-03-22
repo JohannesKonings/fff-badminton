@@ -120,7 +120,7 @@ function Games() {
         item.resultPlayer2.toString()
       ];
     });
-    console.log(tableArray);
+
     setGameItems(tableArray);
   };
 
@@ -240,10 +240,9 @@ function Games() {
   };
 
   const handleGameDaySelection = (event, key) => {
-    console.log(key);
-    console.log(gameDayItems);
-    console.log(gameDayItems[key][0]);
-    readGames(gameDayItems[key][0]);
+    let selectedGameDayFromState = gameDayItems[key][0];
+    readGames(selectedGameDayFromState);
+    setSelectedGameDay(gameDayItems[key]);
   };
 
   const handleSelectedPlayer1 = value => {
