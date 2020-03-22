@@ -102,32 +102,25 @@ function Games() {
     setGameDayItems(tableArray);
   };
 
-  const readGames = async () => {
-    console.log("start read Games");
-    console.log("selected GameDay" + selectedGameDay);
-
+  const readGames = async gameDayId => {
     const allGames = await API.graphql(
       graphqlOperation(listGames, {
-        filter: { id: { beginsWith: selectedGameDay } }
+        filter: { id: { beginsWith: gameDayId } }
       })
     );
-    console.log(allGames.data.listGames.items);
 
     const allGamesItems = allGames.data.listGames.items;
 
     const tableArray = allGamesItems.map(item => {
-      console.log(item.Player1);
       return [
         item.id,
-        item.Player1,
-        item.Player2,
-        item.resultPlayer1,
-        item.resultPlayer2
+        item.player1.name,
+        item.player2.name,
+        item.resultPlayer1.toString(),
+        item.resultPlayer2.toString()
       ];
     });
-
     console.log(tableArray);
-
     setGameItems(tableArray);
   };
 
@@ -171,7 +164,7 @@ function Games() {
 
     await API.graphql(
       graphqlOperation(updateGameday, {
-        input: { id: selectedGameDay[0], date: selectedGameDay[1],  }
+        input: { id: selectedGameDay[0], date: selectedGameDay[1] }
       })
     );
   };
@@ -250,11 +243,7 @@ function Games() {
     console.log(key);
     console.log(gameDayItems);
     console.log(gameDayItems[key][0]);
-
-    setSelectedGameDay(gameDayItems[key][0]);
-    console.log(selectedGameDay);
-    console.log("selected Game Day:" + selectedGameDay);
-    readGames();
+    readGames(gameDayItems[key][0]);
   };
 
   const handleSelectedPlayer1 = value => {
