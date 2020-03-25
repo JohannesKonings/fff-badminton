@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 // react plugin for creating charts
 import ChartistGraph from "react-chartist";
 // @material-ui/core
@@ -39,9 +39,70 @@ import {
 
 import styles from "assets/jss/material-dashboard-react/views/dashboardStyle.js";
 
+import Amplify, { API, graphqlOperation } from "aws-amplify";
+import awsconfig from "./../../aws-exports";
+
+import { listGames } from "./../../graphql/queries";
+
+Amplify.configure(awsconfig);
+
 const useStyles = makeStyles(styles);
 
 export default function Dashboard() {
+  useEffect(() => {
+    onPageRendered();
+  }, []);
+
+  const onPageRendered = async () => {
+    createTrainingsList();
+  };
+
+  const [trainingsItems, setTrainingItems] = useState([]);
+
+  class Counter extends Map {
+    constructor(iter, key = null) {
+      super();
+      this.key = key || (x => x);
+      for (let x of iter) {
+        this.add(x);
+      }
+    }
+    add(x) {
+      x = this.key(x);
+      this.set(x, (this.get(x) || 0) + 1);
+    }
+  }
+
+  const createTrainingsList = async () => {
+    const allGames = await API.graphql(graphqlOperation(listGames));
+    console.log(allGames.data.listGames.items);
+
+    const allGamesItems = allGames.data.listGames.items;
+
+    const gamesList = allGamesItems.map(item => {
+      return [
+        item.id,
+        item.player1.name,
+        item.player2.name,
+        item.resultPlayer1.toString(),
+        item.resultPlayer2.toString()
+      ];
+    });
+
+    console.log(gamesList);
+    //https://stackoverflow.com/questions/17313268/idiomatically-find-the-number-of-occurrences-a-given-value-has-in-an-array
+    const results = new Counter(Object.values(gamesList));
+    for (let [player1, times] of results.entries())
+      console.log("%s won %s times", player1.name, times);
+
+    const trainingsList = gamesList.map(item => {
+      console.log(item.player1);
+      return [item.player1, "3"];
+    });
+
+    setTrainingItems(trainingsList);
+  };
+
   const classes = useStyles();
   return (
     <div>
@@ -240,21 +301,16 @@ export default function Dashboard() {
         <GridItem xs={12} sm={12} md={6}>
           <Card>
             <CardHeader color="warning">
-              <h4 className={classes.cardTitleWhite}>Employees Stats</h4>
+              <h4 className={classes.cardTitleWhite}>Trainings Weltmeister</h4>
               <p className={classes.cardCategoryWhite}>
-                New employees on 15th September, 2016
+                Number of training participations
               </p>
             </CardHeader>
             <CardBody>
               <Table
                 tableHeaderColor="warning"
-                tableHead={["ID", "Name", "Salary", "Country"]}
-                tableData={[
-                  ["1", "Dakota Rice", "$36,738", "Niger"],
-                  ["2", "Minerva Hooper", "$23,789", "Curaçao"],
-                  ["3", "Sage Rodriguez", "$56,142", "Netherlands"],
-                  ["4", "Philip Chaney", "$38,735", "Korea, South"]
-                ]}
+                tableHead={["Name", "no"]}
+                tableData={trainingsItems}
               />
             </CardBody>
           </Card>
