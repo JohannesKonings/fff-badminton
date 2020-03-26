@@ -59,45 +59,30 @@ export default function Dashboard() {
 
   const [trainingsItems, setTrainingItems] = useState([]);
 
-  class Counter extends Map {
-    constructor(iter, key = null) {
-      super();
-      this.key = key || (x => x);
-      for (let x of iter) {
-        this.add(x);
-      }
-    }
-    add(x) {
-      x = this.key(x);
-      this.set(x, (this.get(x) || 0) + 1);
-    }
-  }
-
   const createTrainingsList = async () => {
     const allGames = await API.graphql(graphqlOperation(listGames));
-    console.log(allGames.data.listGames.items);
 
     const allGamesItems = allGames.data.listGames.items;
 
-    const gamesList = allGamesItems.map(item => {
-      return [
-        item.id,
-        item.player1.name,
-        item.player2.name,
-        item.resultPlayer1.toString(),
-        item.resultPlayer2.toString()
-      ];
-    });
+    const gamesList = allGamesItems.flatMap(item => [
+      item.player1.name,
+      item.player2.name
+    ]);
 
-    console.log(gamesList);
-    //https://stackoverflow.com/questions/17313268/idiomatically-find-the-number-of-occurrences-a-given-value-has-in-an-array
-    const results = new Counter(Object.values(gamesList));
-    for (let [player1, times] of results.entries())
-      console.log("%s won %s times", player1.name, times);
+    var gamesListNo = [];
+    gamesList.reduce(function(res, value) {
+      if (!res[value]) {
+        res[value] = { name: value, no: 0 };
+        gamesListNo.push(res[value]);
+      }
+      res[value].no += 1;
+      return res;
+    }, {});
 
-    const trainingsList = gamesList.map(item => {
-      console.log(item.player1);
-      return [item.player1, "3"];
+    gamesListNo.sort((a, b) => b.no - a.no);
+
+    let trainingsList = gamesListNo.map(item => {
+      return [item.name, item.no.toString()];
     });
 
     setTrainingItems(trainingsList);
