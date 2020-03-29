@@ -22,6 +22,10 @@ The documentation for the Material Dashboard React is hosted at our [website](ht
 
 https://aws.amazon.com/de/amplify/
 
+# data model
+
+![data model](./src/assets/img/fff-data-model.png)
+
 ## local dev
 
 ```sh
