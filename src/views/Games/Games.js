@@ -87,14 +87,12 @@ function Games() {
 
   const readGameDays = async () => {
     const allGameDays = await API.graphql(graphqlOperation(listGamedays));
-    console.log(allGameDays.data.listGamedays.items);
 
     const allGameDayItems = allGameDays.data.listGamedays.items;
 
     const tableArray = allGameDayItems.map(item => {
       return [item.id, item.date];
     });
-    console.log(tableArray);
 
     tableArray.sort(function(a, b) {
       return a.id - b.id;
@@ -127,7 +125,6 @@ function Games() {
 
   const readPlayers = async () => {
     const allPlayers = await API.graphql(graphqlOperation(listPlayers));
-    console.log(allPlayers.data.listPlayers.items);
 
     const allPlayersItems = allPlayers.data.listPlayers.items;
 
@@ -143,7 +140,6 @@ function Games() {
       "-",
       ("0" + d.getDate()).slice(-2)
     ].join("");
-    console.log(gameDayDateString);
 
     await API.graphql(
       graphqlOperation(createGameday, {
@@ -160,16 +156,6 @@ function Games() {
     resultPlayer1,
     resultPlayer2
   ) => {
-    const d = selectedDate;
-    const gameDayDateString = [
-      d.getFullYear(),
-      "-",
-      ("0" + (d.getMonth() + 1)).slice(-2),
-      "-",
-      ("0" + d.getDate()).slice(-2)
-    ].join("");
-    console.log(gameDayDateString);
-
     await API.graphql(
       graphqlOperation(createGame, {
         input: {
@@ -187,7 +173,6 @@ function Games() {
   const subscribeGameDay = async () => {
     await API.graphql(graphqlOperation(onCreateGameday)).subscribe({
       next: subonCreateGameday => {
-        console.log("subscription", subonCreateGameday);
         const variant = "success";
         enqueueSnackbar(
           "Gamday created: " + subonCreateGameday.value.data.onCreateGameday.id,
@@ -233,31 +218,15 @@ function Games() {
   }, []);
 
   function onClickCreateGameDay() {
-    console.log("create GameDay: " + selectedDate);
     addGameDay();
   }
 
   function onClickCreateGame() {
-    console.log("create Game: ");
-    console.log(selectedPlayer1);
-    console.log(selectedPlayer2);
     const player1 = playerItems.find(player => player.id === selectedPlayer1);
     const player2 = playerItems.find(player => player.id === selectedPlayer2);
     const gameDayId = selectedGameDay[1];
     const gameId = [gameDayId] + "#" + selectedPlayer1 + "#" + selectedPlayer2;
-    console.log(selectedGameDay);
-    console.log(gameId);
-    /*
-    const games = [
-      gameId,
-      player1.name,
-      player2.name,
-      resultPlayer1,
-      resultPlayer2
-    ];
 
-    setGameItems(gameItems => [...gameItems, games]);
-*/
     addGame(
       gameDayId,
       gameId,
