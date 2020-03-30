@@ -18,6 +18,10 @@
 ## Documentation
 The documentation for the Material Dashboard React is hosted at our [website](https://demos.creative-tim.com/material-dashboard-react/#/documentation/tutorial).
 
+# Technical description of the webapp
+
+https://dev.to/johanneskonings/aws-amplify-api-graphql-mutation-5ba4
+
 # development
 
 https://aws.amazon.com/de/amplify/
