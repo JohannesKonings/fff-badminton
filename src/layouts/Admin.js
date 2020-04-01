@@ -114,4 +114,4 @@ function Admin({ ...rest }) {
   );
 }
 
-export default withAuthenticator(Admin, true);
+export default withAuthenticator(Admin, false);

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import classNames from "classnames";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
@@ -20,9 +20,22 @@ import Button from "components/CustomButtons/Button.js";
 
 import styles from "assets/jss/material-dashboard-react/components/headerLinksStyle.js";
 
+import { Auth } from "aws-amplify";
+
 const useStyles = makeStyles(styles);
 
 export default function AdminNavbarLinks() {
+  const [user, setUser] = useState("");
+
+  const onPageRendered = async () => {
+    let user = await Auth.currentAuthenticatedUser();
+    setUser(user.username);
+  };
+
+  useEffect(() => {
+    onPageRendered();
+  }, []);
+
   const classes = useStyles();
   const [openNotification, setOpenNotification] = React.useState(null);
   const [openProfile, setOpenProfile] = React.useState(null);
@@ -45,6 +58,10 @@ export default function AdminNavbarLinks() {
   };
   const handleCloseProfile = () => {
     setOpenProfile(null);
+  };
+  const handleLogout = () => {
+    setOpenProfile(null);
+    Auth.signOut();
   };
   return (
     <div>
@@ -180,6 +197,7 @@ export default function AdminNavbarLinks() {
               <Paper>
                 <ClickAwayListener onClickAway={handleCloseProfile}>
                   <MenuList role="menu">
+                    <MenuItem>signed in as {user}</MenuItem>
                     <MenuItem
                       onClick={handleCloseProfile}
                       className={classes.dropdownItem}
@@ -194,7 +212,7 @@ export default function AdminNavbarLinks() {
                     </MenuItem>
                     <Divider light />
                     <MenuItem
-                      onClick={handleCloseProfile}
+                      onClick={handleLogout}
                       className={classes.dropdownItem}
                     >
                       Logout
