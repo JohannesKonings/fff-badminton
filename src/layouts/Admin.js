@@ -17,9 +17,9 @@ import styles from "assets/jss/material-dashboard-react/layouts/adminStyle.js";
 import bgImage from "assets/img/sidebar-2.jpg";
 import logo from "assets/img/fff.png";
 
-import Amplify from 'aws-amplify';
-import { withAuthenticator } from 'aws-amplify-react';
-import awsconfig from './../aws-exports';
+import Amplify from "aws-amplify";
+import { withAuthenticator } from "aws-amplify-react";
+import awsconfig from "./../aws-exports";
 Amplify.configure(awsconfig);
 
 let ps;
@@ -50,23 +50,9 @@ function Admin({ ...rest }) {
   // ref to help us initialize PerfectScrollbar on windows devices
   const mainPanel = React.createRef();
   // states and functions
-  const [image, setImage] = React.useState(bgImage);
-  const [color, setColor] = React.useState("blue");
-  const [fixedClasses, setFixedClasses] = React.useState("dropdown show");
+  const [image] = React.useState(bgImage);
+  const [color] = React.useState("blue");
   const [mobileOpen, setMobileOpen] = React.useState(false);
-  const handleImageClick = image => {
-    setImage(image);
-  };
-  const handleColorClick = color => {
-    setColor(color);
-  };
-  const handleFixedClick = () => {
-    if (fixedClasses === "dropdown") {
-      setFixedClasses("dropdown show");
-    } else {
-      setFixedClasses("dropdown");
-    }
-  };
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
