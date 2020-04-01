@@ -1,0 +1,21 @@
+{
+    "appName": "fffbadminton",
+    "roleName": "pinpointLambdaRolecd93dc94",
+    "cloudformationPolicyName": "cloudformationPolicycd93dc94",
+    "cloudWatchPolicyName": "cloudWatchPolicycd93dc94",
+    "pinpointPolicyName": "pinpointPolicycd93dc94",
+    "authPolicyName": "pinpoint_amplify_cd93dc94",
+    "unauthPolicyName": "pinpoint_amplify_cd93dc94",
+    "authRoleName": {
+        "Ref": "AuthRoleName"
+    },
+    "unauthRoleName": {
+        "Ref": "UnauthRoleName"
+    },
+    "authRoleArn": {
+        "Fn::GetAtt": [
+            "AuthRole",
+            "Arn"
+        ]
+    }
+}

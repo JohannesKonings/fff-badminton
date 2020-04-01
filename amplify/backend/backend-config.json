@@ -23,5 +23,11 @@
 				}
 			}
 		}
+	},
+	"analytics": {
+		"fffbadminton": {
+			"service": "Pinpoint",
+			"providerPlugin": "awscloudformation"
+		}
 	}
 }
