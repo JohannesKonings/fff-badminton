@@ -91,7 +91,8 @@ export default function Dashboard() {
     let numberOfGameDays = countUnique(gameDayList);
 
     if (numberOfGameDays !== 0) {
-      let averageParticipants = gameDayPlayerCombinedUnique.length / numberOfGameDays;
+      let averageParticipants =
+        gameDayPlayerCombinedUnique.length / numberOfGameDays;
       setAverageParticipants(averageParticipants.toFixed(2));
     }
   };
