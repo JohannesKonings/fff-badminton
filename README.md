@@ -35,3 +35,10 @@ https://aws.amazon.com/de/amplify/
 ```sh
 amplify mock
 ```
+
+## test
+
+```sh
+npx cypress open
+npm run cypress:open
+```
