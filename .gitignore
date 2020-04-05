@@ -38,3 +38,6 @@ amplifyconfiguration.json
 amplify-gradle-config.json
 amplifyxc.config
 amplify/team-provider-info.json
+
+#cypress
+cypress.env.json

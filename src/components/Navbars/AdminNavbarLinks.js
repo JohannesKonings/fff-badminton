@@ -161,6 +161,7 @@ export default function AdminNavbarLinks() {
       </div>
       <div className={classes.manager}>
         <Button
+          data-test="profile-dropdown"
           color={window.innerWidth > 959 ? "transparent" : "white"}
           justIcon={window.innerWidth > 959}
           simple={!(window.innerWidth > 959)}
@@ -212,6 +213,7 @@ export default function AdminNavbarLinks() {
                     </MenuItem>
                     <Divider light />
                     <MenuItem
+                      test-data="profile-logout"
                       onClick={handleLogout}
                       className={classes.dropdownItem}
                     >
