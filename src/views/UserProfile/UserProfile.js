@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 import InputLabel from "@material-ui/core/InputLabel";
@@ -14,6 +14,12 @@ import CardBody from "components/Card/CardBody.js";
 import CardFooter from "components/Card/CardFooter.js";
 
 import avatar from "assets/img/faces/marc.jpg";
+
+import Amplify, { Analytics } from "aws-amplify";
+
+import awsconfig from "./../../aws-exports";
+
+Amplify.configure(awsconfig);
 
 const styles = {
   cardCategoryWhite: {
@@ -37,6 +43,14 @@ const styles = {
 const useStyles = makeStyles(styles);
 
 export default function UserProfile() {
+  useEffect(() => {
+    onPageRendered();
+  }, []);
+
+  const onPageRendered = async () => {
+    Analytics.record({ name: "navUserProfile" });
+  };
+
   const classes = useStyles();
   return (
     <div>

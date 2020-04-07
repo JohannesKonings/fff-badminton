@@ -17,7 +17,7 @@ import Danger from "components/Typography/Danger.js";
 
 import styles from "assets/jss/material-dashboard-react/views/dashboardStyle.js";
 
-import Amplify, { API, graphqlOperation } from "aws-amplify";
+import Amplify, { API, graphqlOperation, Analytics } from "aws-amplify";
 import awsconfig from "./../../aws-exports";
 
 import { listGames } from "./../../graphql/queries";
@@ -32,6 +32,7 @@ export default function Dashboard() {
   }, []);
 
   const onPageRendered = async () => {
+    Analytics.record({ name: "navDashboard" });
     readAllGames();
   };
 

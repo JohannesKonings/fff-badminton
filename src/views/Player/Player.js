@@ -9,7 +9,7 @@ import Card from "components/Card/Card.js";
 import CardHeader from "components/Card/CardHeader.js";
 import CardBody from "components/Card/CardBody.js";
 
-import Amplify, { API, graphqlOperation } from "aws-amplify";
+import Amplify, { API, graphqlOperation, Analytics } from "aws-amplify";
 import awsconfig from "./../../aws-exports";
 
 import { listPlayers } from "./../../graphql/queries";
@@ -71,6 +71,7 @@ function Player() {
   };
 
   useEffect(() => {
+    Analytics.record({ name: "navPlayer" });
     readPlayers();
   }, []);
 

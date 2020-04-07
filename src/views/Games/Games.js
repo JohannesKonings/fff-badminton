@@ -15,7 +15,7 @@ import CustomInputSelect from "components/CustomInput/CustomInputSelect.js";
 
 import { SnackbarProvider, useSnackbar } from "notistack";
 
-import Amplify, { API, graphqlOperation } from "aws-amplify";
+import Amplify, { API, graphqlOperation, Analytics } from "aws-amplify";
 import awsconfig from "./../../aws-exports";
 
 import { listGamedays, listGames, listPlayers } from "./../../graphql/queries";
@@ -79,6 +79,7 @@ function Games() {
   const { enqueueSnackbar } = useSnackbar();
 
   const onPageRendered = async () => {
+    Analytics.record({ name: "Games" });
     readGameDays();
     subscribeGameDay();
     readPlayers();
