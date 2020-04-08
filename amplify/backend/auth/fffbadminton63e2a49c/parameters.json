@@ -1,6 +1,6 @@
 {
     "identityPoolName": "fffbadminton63e2a49c_identitypool_63e2a49c",
-    "allowUnauthenticatedIdentities": true,
+    "allowUnauthenticatedIdentities": false,
     "resourceNameTruncated": "fffbad63e2a49c",
     "userPoolName": "fffbadminton63e2a49c_userpool_63e2a49c",
     "autoVerifiedAttributes": [
