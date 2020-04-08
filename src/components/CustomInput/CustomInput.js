@@ -16,8 +16,6 @@ const useStyles = makeStyles(styles);
 
 export default function CustomInput(props) {
   const classes = useStyles();
-  const [value, setValue] = React.useState('');
-
   const {
     formControlProps,
     labelText,
@@ -25,15 +23,8 @@ export default function CustomInput(props) {
     labelProps,
     inputProps,
     error,
-    success,
-    textFieldValue
+    success
   } = props;
-
-  const handleChange = event => {
-    console.log(event.target.value)
-    setValue(event.target.value);
-    textFieldValue(event.target.value)
-  };
 
   const labelClasses = classNames({
     [" " + classes.labelRootError]: error,
@@ -68,8 +59,6 @@ export default function CustomInput(props) {
           underline: underlineClasses
         }}
         id={id}
-        value={value}
-        onChange={handleChange}
         {...inputProps}
       />
       {error ? (
@@ -83,7 +72,7 @@ export default function CustomInput(props) {
 
 CustomInput.propTypes = {
   labelText: PropTypes.node,
-  labelProps: PropTypes.object, 
+  labelProps: PropTypes.object,
   id: PropTypes.string,
   inputProps: PropTypes.object,
   formControlProps: PropTypes.object,
