@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 import InputLabel from "@material-ui/core/InputLabel";
@@ -15,7 +15,7 @@ import CardFooter from "components/Card/CardFooter.js";
 
 import avatar from "assets/img/faces/marc.jpg";
 
-import Amplify, { Analytics } from "aws-amplify";
+import Amplify, { Analytics, Auth } from "aws-amplify";
 
 import awsconfig from "./../../aws-exports";
 
@@ -43,12 +43,28 @@ const styles = {
 const useStyles = makeStyles(styles);
 
 export default function UserProfile() {
+  const [username, setUsername] = useState("");
+  const [cognitoId, setcognitoId] = useState("");
+  const [email, setEmail] = useState("");
+
   useEffect(() => {
     onPageRendered();
   }, []);
 
   const onPageRendered = async () => {
     Analytics.record({ name: "navUserProfile" });
+    let user = await Auth.currentAuthenticatedUser();
+    setUsername(user.username);
+    setcognitoId(user.attributes.sub);
+    setEmail(user.attributes.email);
+  };
+
+  const onChangeEmail = e => {
+    setEmail(e.target.value);
+  };
+
+  const onChangeUsername = e => {
+    setUsername(e.target.value);
   };
 
   const classes = useStyles();
@@ -65,13 +81,14 @@ export default function UserProfile() {
               <GridContainer>
                 <GridItem xs={12} sm={12} md={5}>
                   <CustomInput
-                    labelText="Company (disabled)"
-                    id="company-disabled"
+                    labelText="Cognito Id"
+                    id="cognito-id"
                     formControlProps={{
                       fullWidth: true
                     }}
                     inputProps={{
-                      disabled: true
+                      disabled: true,
+                      value: cognitoId
                     }}
                   />
                 </GridItem>
@@ -82,6 +99,10 @@ export default function UserProfile() {
                     formControlProps={{
                       fullWidth: true
                     }}
+                    inputProps={{
+                      value: username,
+                      onChange: onChangeUsername
+                    }}
                   />
                 </GridItem>
                 <GridItem xs={12} sm={12} md={4}>
@@ -90,6 +111,10 @@ export default function UserProfile() {
                     id="email-address"
                     formControlProps={{
                       fullWidth: true
+                    }}
+                    inputProps={{
+                      value: email,
+                      onChange: onChangeEmail
                     }}
                   />
                 </GridItem>
