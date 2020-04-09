@@ -235,14 +235,14 @@ export default function UserProfile() {
         <GridItem xs={12} sm={12} md={4}>
           <Card profile>
             <CardAvatar profile>
-              <a href="#pablo" onClick={onOpenFileDialog}>
+              <a href="#">
                 <input
                   type="file"
                   onChange={onProcessFile}
                   ref={fileInput}
                   hidden={true}
                 />
-                <img src={image} alt="..." />
+                <img src={image} onClick={onOpenFileDialog} />
               </a>
             </CardAvatar>
             <CardBody profile>
