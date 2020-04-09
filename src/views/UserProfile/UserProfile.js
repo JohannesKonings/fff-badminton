@@ -15,7 +15,7 @@ import CardFooter from "components/Card/CardFooter.js";
 
 import avatar from "assets/img/faces/marc.jpg";
 
-import Amplify, { Analytics, Auth } from "aws-amplify";
+import Amplify, { Analytics, Auth, Storage } from "aws-amplify";
 
 import awsconfig from "./../../aws-exports";
 
@@ -46,6 +46,9 @@ export default function UserProfile() {
   const [username, setUsername] = useState("");
   const [cognitoId, setcognitoId] = useState("");
   const [email, setEmail] = useState("");
+  const [image, setImage] = useState(avatar);
+  
+  Storage.configure({ track: true, level: "private" });
 
   useEffect(() => {
     onPageRendered();
@@ -57,6 +60,13 @@ export default function UserProfile() {
     setUsername(user.username);
     setcognitoId(user.attributes.sub);
     setEmail(user.attributes.email);
+    getProfilePicture();
+  };
+
+  const getProfilePicture = () => {
+    Storage.get("profilePicture.png")
+      .then(picture => setImage(picture))
+      .catch(err => console.log(err));
   };
 
   const onChangeEmail = e => {
@@ -65,6 +75,31 @@ export default function UserProfile() {
 
   const onChangeUsername = e => {
     setUsername(e.target.value);
+  };
+
+  let fileInput = React.createRef();
+
+  const onOpenFileDialog = () => {
+    fileInput.current.click();
+  };
+
+  const onProcessFile = e => {
+    e.preventDefault();
+    let reader = new FileReader();
+    let file = e.target.files[0];
+    try {
+      reader.readAsDataURL(file);
+    } catch (err) {
+      console.log(err);
+    }
+    reader.onloadend = () => {
+      setImage(reader.result);
+    };
+    Storage.put("profilePicture.png", file, {
+      contentType: "image/png"
+    })
+      .then(result => console.log(result))
+      .catch(err => console.log(err));
   };
 
   const classes = useStyles();
@@ -193,8 +228,14 @@ export default function UserProfile() {
         <GridItem xs={12} sm={12} md={4}>
           <Card profile>
             <CardAvatar profile>
-              <a href="#pablo" onClick={e => e.preventDefault()}>
-                <img src={avatar} alt="..." />
+              <a href="#pablo" onClick={onOpenFileDialog}>
+                <input
+                  type="file"
+                  onChange={onProcessFile}
+                  ref={fileInput}
+                  hidden={true}
+                />
+                <img src={image} alt="..." />
               </a>
             </CardAvatar>
             <CardBody profile>
