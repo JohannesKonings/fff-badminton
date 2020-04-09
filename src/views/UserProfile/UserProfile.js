@@ -47,7 +47,7 @@ export default function UserProfile() {
   const [cognitoId, setcognitoId] = useState("");
   const [email, setEmail] = useState("");
   const [image, setImage] = useState(avatar);
-  
+
   Storage.configure({ track: true, level: "private" });
 
   useEffect(() => {
@@ -65,7 +65,14 @@ export default function UserProfile() {
 
   const getProfilePicture = () => {
     Storage.get("profilePicture.png")
-      .then(picture => setImage(picture))
+      .then(url => {
+        var myRequest = new Request(url);
+        fetch(myRequest).then(function(response) {
+          if (response.status === 200) {
+            setImage(url);
+          }
+        });
+      })
       .catch(err => console.log(err));
   };
 
