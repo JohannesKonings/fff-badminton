@@ -15,7 +15,7 @@ import CardFooter from "components/Card/CardFooter.js";
 
 import avatar from "assets/img/faces/marc.jpg";
 
-import Amplify, { Analytics, Auth } from "aws-amplify";
+import Amplify, { Analytics, Auth, Storage } from "aws-amplify";
 
 import awsconfig from "./../../aws-exports";
 
@@ -46,8 +46,9 @@ export default function UserProfile() {
   const [username, setUsername] = useState("");
   const [cognitoId, setcognitoId] = useState("");
   const [email, setEmail] = useState("");
-  const [file, setFile] = useState(null);
   const [image, setImage] = useState(avatar);
+
+  Storage.configure({ track: true, level: "private" });
 
   useEffect(() => {
     onPageRendered();
@@ -62,7 +63,11 @@ export default function UserProfile() {
     getProfilePicture();
   };
 
-  const getProfilePicture = () => {};
+  const getProfilePicture = () => {
+    Storage.get("profilePicture.png")
+      .then(picture => setImage(picture))
+      .catch(err => console.log(err));
+  };
 
   const onChangeEmail = e => {
     setEmail(e.target.value);
@@ -88,9 +93,13 @@ export default function UserProfile() {
       console.log(err);
     }
     reader.onloadend = () => {
-      setFile(file);
       setImage(reader.result);
     };
+    Storage.put("profilePicture.png", file, {
+      contentType: "image/png"
+    })
+      .then(result => console.log(result))
+      .catch(err => console.log(err));
   };
 
   const classes = useStyles();
