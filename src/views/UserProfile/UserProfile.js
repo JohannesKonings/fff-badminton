@@ -46,6 +46,8 @@ export default function UserProfile() {
   const [username, setUsername] = useState("");
   const [cognitoId, setcognitoId] = useState("");
   const [email, setEmail] = useState("");
+  const [file, setFile] = useState(null);
+  const [image, setImage] = useState(avatar);
 
   useEffect(() => {
     onPageRendered();
@@ -57,7 +59,10 @@ export default function UserProfile() {
     setUsername(user.username);
     setcognitoId(user.attributes.sub);
     setEmail(user.attributes.email);
+    getProfilePicture();
   };
+
+  const getProfilePicture = () => {};
 
   const onChangeEmail = e => {
     setEmail(e.target.value);
@@ -65,6 +70,27 @@ export default function UserProfile() {
 
   const onChangeUsername = e => {
     setUsername(e.target.value);
+  };
+
+  let fileInput = React.createRef();
+
+  const onOpenFileDialog = () => {
+    fileInput.current.click();
+  };
+
+  const onProcessFile = e => {
+    e.preventDefault();
+    let reader = new FileReader();
+    let file = e.target.files[0];
+    try {
+      reader.readAsDataURL(file);
+    } catch (err) {
+      console.log(err);
+    }
+    reader.onloadend = () => {
+      setFile(file);
+      setImage(reader.result);
+    };
   };
 
   const classes = useStyles();
@@ -193,8 +219,14 @@ export default function UserProfile() {
         <GridItem xs={12} sm={12} md={4}>
           <Card profile>
             <CardAvatar profile>
-              <a href="#pablo" onClick={e => e.preventDefault()}>
-                <img src={avatar} alt="..." />
+              <a href="#pablo" onClick={onOpenFileDialog}>
+                <input
+                  type="file"
+                  onChange={onProcessFile}
+                  ref={fileInput}
+                  hidden={true}
+                />
+                <img src={image} alt="..." />
               </a>
             </CardAvatar>
             <CardBody profile>
