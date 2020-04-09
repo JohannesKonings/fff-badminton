@@ -47,7 +47,7 @@ export default function UserProfile() {
   const [cognitoId, setcognitoId] = useState("");
   const [email, setEmail] = useState("");
   const [image, setImage] = useState(avatar);
-
+  
   Storage.configure({ track: true, level: "private" });
 
   useEffect(() => {
