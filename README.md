@@ -3,7 +3,7 @@
 ![license](https://img.shields.io/badge/license-MIT-blue.svg) 
 ![GitHub issues](https://img.shields.io/github/issues/JohannesKonings/fff-badminton)
 ![GitHub closed issues](https://img.shields.io/github/issues-closed/JohannesKonings/fff-badminton)
-[![Known Vulnerabilities](https://snyk.io/test/github/JohannesKonings/fff-badminton/badge.svg)](https://snyk.io/test/github/JohannesKonings/fff-badminton)
+[![Known Vulnerabilities](https://snyk.io/test/github/JohannesKonings/fff-badminton/badge.svg?targetFile=package.json)](https://snyk.io/test/github/JohannesKonings/fff-badminton?targetFile=package.json)
 ![test](https://github.com/JohannesKonings/fff-badminton/workflows/test/badge.svg)
 [![Total alerts](https://img.shields.io/lgtm/alerts/g/JohannesKonings/fff-badminton.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/JohannesKonings/fff-badminton/alerts/)
 [![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/JohannesKonings/fff-badminton.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/JohannesKonings/fff-badminton/context:javascript)
