@@ -24,7 +24,7 @@
     "react-router-dom": "5.2.0",
     "react-scripts": "3.4.1",
     "react-swipeable-views": "0.13.9",
-    "snyk": "^1.320.2"
+    "snyk": "^1.320.3"
   },
   "scripts": {
     "start": "react-scripts start",
