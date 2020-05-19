@@ -15,7 +15,7 @@
     "classnames": "2.2.6",
     "date-fns": "^2.13.0",
     "history": "4.10.1",
-    "notistack": "^0.9.13",
+    "notistack": "^0.9.16",
     "perfect-scrollbar": "1.5.0",
     "prop-types": "15.7.2",
     "react": "16.13.1",
