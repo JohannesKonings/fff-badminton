@@ -48,10 +48,10 @@
     "userPoolGroupList": [],
     "dependsOn": [],
     "hostedUI": true,
-    "hostedUIDomainName": "fffbadminton66f0edb2-66f0edb2",
+    "hostedUIDomainName": "fffbadmintonbfa19d28-bfa19d28",
     "authProvidersUserPool": [
         "Google"
     ],
     "hostedUIProviderMeta": "[{\"ProviderName\":\"Google\",\"authorize_scopes\":\"openid email profile\",\"AttributeMapping\":{\"email\":\"email\",\"username\":\"sub\"}}]",
-    "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"http://localhost:3000/\",\"https://www.fff-badminton.de/\"],\"LogoutURLs\":[\"http://localhost:3000/\",\"https://www.fff-badminton.de/\"]}"
+    "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"http://localhost:3000/\"],\"LogoutURLs\":[\"http://localhost:3000/\"]}"
 }
