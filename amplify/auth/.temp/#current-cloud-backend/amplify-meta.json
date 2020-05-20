@@ -1,0 +1,106 @@
+{
+	"providers": {
+		"awscloudformation": {
+			"AuthRoleName": "amplify-fff-badminton-auth-142831-authRole",
+			"UnauthRoleArn": "arn:aws:iam::964817886626:role/amplify-fff-badminton-auth-142831-unauthRole",
+			"AuthRoleArn": "arn:aws:iam::964817886626:role/amplify-fff-badminton-auth-142831-authRole",
+			"Region": "eu-central-1",
+			"DeploymentBucketName": "amplify-fff-badminton-auth-142831-deployment",
+			"UnauthRoleName": "amplify-fff-badminton-auth-142831-unauthRole",
+			"StackName": "amplify-fff-badminton-auth-142831",
+			"StackId": "arn:aws:cloudformation:eu-central-1:964817886626:stack/amplify-fff-badminton-auth-142831/ebee6b10-9839-11ea-8d48-02f9d8bbd456",
+			"AmplifyAppId": "d39fez8vh75e74"
+		}
+	},
+	"auth": {
+		"fffbadminton63e2a49c": {
+			"service": "Cognito",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": [],
+			"customAuth": false,
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/amplify-fff-badminton-auth-142831-deployment/amplify-cfn-templates/auth/fffbadminton63e2a49c-cloudformation-template.yml",
+				"logicalId": "authfffbadminton63e2a49c"
+			},
+			"lastPushTimeStamp": "2020-05-17T13:01:43.351Z",
+			"output": {
+				"AppClientSecret": "nftal13se6h5t1j1gibl7r68klnuauvja6j7ehpls12g2j298ee",
+				"UserPoolId": "eu-central-1_ExtISNs1v",
+				"AppClientIDWeb": "7ouceoaj01v2ko1eq734hg20ll",
+				"AppClientID": "4r2c9k6iqco546mv7bifpg3hna",
+				"HostedUIDomain": "fffbadmintonbfa19d28-bfa19d28-auth",
+				"IdentityPoolId": "eu-central-1:3072157f-4418-4946-9312-e284e6f8f23a",
+				"IdentityPoolName": "fffbadminton63e2a49c_identitypool_63e2a49c__auth",
+				"OAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"http://localhost:3000/\"],\"LogoutURLs\":[\"http://localhost:3000/\"]}",
+				"UserPoolName": "fffbadminton63e2a49c_userpool_63e2a49c"
+			},
+			"lastPushDirHash": "Hxpg+9SoQnodKm8cN02rIHKoYFI="
+		}
+	},
+	"api": {
+		"fffbadminton": {
+			"service": "AppSync",
+			"providerPlugin": "awscloudformation",
+			"output": {
+				"authConfig": {
+					"additionalAuthenticationProviders": [],
+					"defaultAuthentication": {
+						"authenticationType": "AMAZON_COGNITO_USER_POOLS",
+						"userPoolConfig": {
+							"userPoolId": "authfffbadminton63e2a49c"
+						}
+					}
+				},
+				"GraphQLAPIIdOutput": "ltfzx3gczvbohcgv3uwglql6xe",
+				"GraphQLAPIEndpointOutput": "https://oakwymtlwnfuneotb6pktzswya.appsync-api.eu-central-1.amazonaws.com/graphql"
+			},
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/amplify-fff-badminton-auth-142831-deployment/amplify-cfn-templates/api/cloudformation-template.json",
+				"logicalId": "apifffbadminton"
+			},
+			"lastPushTimeStamp": "2020-05-17T13:01:43.322Z",
+			"lastPushDirHash": "8jlp6Q78+W/Ri2EMTGp3MwwzU1k="
+		}
+	},
+	"analytics": {
+		"fffbadminton": {
+			"service": "Pinpoint",
+			"providerPlugin": "awscloudformation",
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/amplify-fff-badminton-auth-142831-deployment/amplify-cfn-templates/analytics/pinpoint-cloudformation-template.json",
+				"logicalId": "analyticsfffbadminton"
+			},
+			"lastPushTimeStamp": "2020-05-17T13:01:43.329Z",
+			"output": {
+				"appName": "fffbadminton-auth",
+				"Region": "eu-central-1",
+				"Id": "195f85d96c0e40d9adcc2bc34aa69524"
+			},
+			"lastPushDirHash": "8CXq/quc/qtbZSBgR3L406c5lBQ="
+		}
+	},
+	"hosting": {
+		"amplifyhosting": {
+			"service": "amplifyhosting",
+			"type": "cicd",
+			"cicd": "cicd",
+			"lastPushTimeStamp": "2020-05-17T12:32:52.018Z"
+		}
+	},
+	"storage": {
+		"profilepictures": {
+			"service": "S3",
+			"providerPlugin": "awscloudformation",
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/amplify-fff-badminton-auth-142831-deployment/amplify-cfn-templates/storage/s3-cloudformation-template.json",
+				"logicalId": "storageprofilepictures"
+			},
+			"lastPushTimeStamp": "2020-05-17T13:01:43.335Z",
+			"output": {
+				"BucketName": "profilepicturesauth-auth",
+				"Region": "eu-central-1"
+			},
+			"lastPushDirHash": "p47LNL9FqOdtKD4+a05OOO9zg2A="
+		}
+	}
+}
