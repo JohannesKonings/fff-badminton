@@ -94,7 +94,7 @@ Parameters:
             
   hostedUIProviderCreds:
     Type: String
-              
+
   hostedUIDomainName:
     Type: String
                       
