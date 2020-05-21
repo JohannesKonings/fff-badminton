@@ -31,7 +31,7 @@
 				"HostedUIDomain": "fffbadmintonbfa19d28-bfa19d28-auth",
 				"IdentityPoolId": "eu-central-1:3072157f-4418-4946-9312-e284e6f8f23a",
 				"IdentityPoolName": "fffbadminton63e2a49c_identitypool_63e2a49c__auth",
-				"OAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"http://localhost:3000/\"],\"LogoutURLs\":[\"http://localhost:3000/\"]}",
+				"OAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"https://www.fff-badminton.de/\"],\"LogoutURLs\":[\"https://www.fff-badminton.de/\"]}",
 				"UserPoolName": "fffbadminton63e2a49c_userpool_63e2a49c"
 			},
 			"lastPushDirHash": "Hxpg+9SoQnodKm8cN02rIHKoYFI="

@@ -14,9 +14,13 @@ export const createGameday = /* GraphQL */ `
           id
           resultPlayer1
           resultPlayer2
+          createdAt
+          updatedAt
         }
         nextToken
       }
+      createdAt
+      updatedAt
     }
   }
 `;
@@ -33,9 +37,13 @@ export const updateGameday = /* GraphQL */ `
           id
           resultPlayer1
           resultPlayer2
+          createdAt
+          updatedAt
         }
         nextToken
       }
+      createdAt
+      updatedAt
     }
   }
 `;
@@ -52,9 +60,13 @@ export const deleteGameday = /* GraphQL */ `
           id
           resultPlayer1
           resultPlayer2
+          createdAt
+          updatedAt
         }
         nextToken
       }
+      createdAt
+      updatedAt
     }
   }
 `;
@@ -71,6 +83,8 @@ export const createGame = /* GraphQL */ `
         games {
           nextToken
         }
+        createdAt
+        updatedAt
       }
       player1 {
         id
@@ -79,7 +93,11 @@ export const createGame = /* GraphQL */ `
           id
           resultPlayer1
           resultPlayer2
+          createdAt
+          updatedAt
         }
+        createdAt
+        updatedAt
       }
       player2 {
         id
@@ -88,10 +106,16 @@ export const createGame = /* GraphQL */ `
           id
           resultPlayer1
           resultPlayer2
+          createdAt
+          updatedAt
         }
+        createdAt
+        updatedAt
       }
       resultPlayer1
       resultPlayer2
+      createdAt
+      updatedAt
     }
   }
 `;
@@ -108,6 +132,8 @@ export const updateGame = /* GraphQL */ `
         games {
           nextToken
         }
+        createdAt
+        updatedAt
       }
       player1 {
         id
@@ -116,7 +142,11 @@ export const updateGame = /* GraphQL */ `
           id
           resultPlayer1
           resultPlayer2
+          createdAt
+          updatedAt
         }
+        createdAt
+        updatedAt
       }
       player2 {
         id
@@ -125,10 +155,16 @@ export const updateGame = /* GraphQL */ `
           id
           resultPlayer1
           resultPlayer2
+          createdAt
+          updatedAt
         }
+        createdAt
+        updatedAt
       }
       resultPlayer1
       resultPlayer2
+      createdAt
+      updatedAt
     }
   }
 `;
@@ -145,6 +181,8 @@ export const deleteGame = /* GraphQL */ `
         games {
           nextToken
         }
+        createdAt
+        updatedAt
       }
       player1 {
         id
@@ -153,7 +191,11 @@ export const deleteGame = /* GraphQL */ `
           id
           resultPlayer1
           resultPlayer2
+          createdAt
+          updatedAt
         }
+        createdAt
+        updatedAt
       }
       player2 {
         id
@@ -162,10 +204,16 @@ export const deleteGame = /* GraphQL */ `
           id
           resultPlayer1
           resultPlayer2
+          createdAt
+          updatedAt
         }
+        createdAt
+        updatedAt
       }
       resultPlayer1
       resultPlayer2
+      createdAt
+      updatedAt
     }
   }
 `;
@@ -182,18 +230,28 @@ export const createPlayer = /* GraphQL */ `
         gameday {
           id
           date
+          createdAt
+          updatedAt
         }
         player1 {
           id
           name
+          createdAt
+          updatedAt
         }
         player2 {
           id
           name
+          createdAt
+          updatedAt
         }
         resultPlayer1
         resultPlayer2
+        createdAt
+        updatedAt
       }
+      createdAt
+      updatedAt
     }
   }
 `;
@@ -210,18 +268,28 @@ export const updatePlayer = /* GraphQL */ `
         gameday {
           id
           date
+          createdAt
+          updatedAt
         }
         player1 {
           id
           name
+          createdAt
+          updatedAt
         }
         player2 {
           id
           name
+          createdAt
+          updatedAt
         }
         resultPlayer1
         resultPlayer2
+        createdAt
+        updatedAt
       }
+      createdAt
+      updatedAt
     }
   }
 `;
@@ -238,18 +306,28 @@ export const deletePlayer = /* GraphQL */ `
         gameday {
           id
           date
+          createdAt
+          updatedAt
         }
         player1 {
           id
           name
+          createdAt
+          updatedAt
         }
         player2 {
           id
           name
+          createdAt
+          updatedAt
         }
         resultPlayer1
         resultPlayer2
+        createdAt
+        updatedAt
       }
+      createdAt
+      updatedAt
     }
   }
 `;

@@ -21,21 +21,6 @@ import Amplify from "aws-amplify";
 import { withAuthenticator } from "aws-amplify-react";
 import awsconfig from "./../aws-exports";
 
-// Fix issues with multiple redirect urls.
-// Try to figure out which one to use...
-//https://github.com/aws-amplify/amplify-cli/issues/2792#issuecomment-575406663
-const { host } = window.location;
-if (awsconfig.oauth.redirectSignIn.includes(",")) {
-  const filterHost = url => new URL(url).host === host;
-  awsconfig.oauth.redirectSignIn = awsconfig.oauth.redirectSignIn
-    .split(",")
-    .filter(filterHost)
-    .shift();
-  awsconfig.oauth.redirectSignOut = awsconfig.oauth.redirectSignOut
-    .split(",")
-    .filter(filterHost)
-    .shift();
-}
 Amplify.configure(awsconfig);
 
 let ps;
@@ -98,6 +83,7 @@ function Admin({ ...rest }) {
       window.removeEventListener("resize", resizeFunction);
     };
   }, [mainPanel]);
+
   return (
     <div className={classes.wrapper}>
       <Sidebar
