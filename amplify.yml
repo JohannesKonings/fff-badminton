@@ -1,11 +1,17 @@
 #file from root
 version: 0.1
-backend:
+backend: 
   phases:
     build:
       commands:
+        - amplify --version
         - '# Execute Amplify CLI with the helper script'
-        - amplifyPush --simple
+        - '# workaround amplifyPush --simple'
+        - |
+          amplify init 
+          --amplify "{\"envName\":\"test\"}" 
+          --categories "{\"auth\":{\"googleAppIdUserPool\":\"$AMPLIFY_GOOGLE_CLIENT_ID\",\"googleAppSecretUserPool\":\"$AMPLIFY_GOOGLE_CLIENT_SECRET\"}}"
+          --yes
 frontend:
   phases:
     preBuild:
