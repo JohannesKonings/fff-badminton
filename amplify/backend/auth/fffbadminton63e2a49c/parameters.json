@@ -44,7 +44,7 @@
             "Arn"
         ]
     },
-    "useDefault": "default",
+    "useDefault": "defaultSocial",
     "userPoolGroupList": [],
     "dependsOn": [],
     "hostedUI": false
