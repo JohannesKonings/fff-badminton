@@ -6,8 +6,7 @@ backend:
       commands:
         - amplify --version
         - '# Execute Amplify CLI with the helper script'
-        - '# workaround amplifyPush --simple'
-        - amplify init --amplify "{\"envName\":\"$USER_BRANCH\"}" --categories "{\"auth\":{\"googleAppIdUserPool\":\"$AMPLIFY_GOOGLE_CLIENT_ID\",\"googleAppSecretUserPool\":\"$AMPLIFY_GOOGLE_CLIENT_SECRET\"}}" --yes
+        - amplifyPush --simple'
 frontend:
   phases:
     preBuild:
