@@ -10,7 +10,7 @@
     "mfaTypes": [
         "SMS Text Message"
     ],
-    "smsAuthenticationMessage": "Your authentication code is {####}",
+    "smsAuthenticationMessage": "Your authentication code is {####} (test JK)",
     "smsVerificationMessage": "Your verification code is {####}",
     "emailVerificationSubject": "Your verification code",
     "emailVerificationMessage": "Your verification code is {####}",
@@ -44,7 +44,7 @@
             "Arn"
         ]
     },
-    "useDefault": "defaultSocial",
+    "useDefault": "default",
     "userPoolGroupList": [],
     "dependsOn": [],
     "hostedUI": false
