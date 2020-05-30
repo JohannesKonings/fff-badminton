@@ -10,13 +10,6 @@ export const createGameday = /* GraphQL */ `
       id
       date
       games {
-        items {
-          id
-          resultPlayer1
-          resultPlayer2
-          createdAt
-          updatedAt
-        }
         nextToken
       }
       createdAt
@@ -33,13 +26,6 @@ export const updateGameday = /* GraphQL */ `
       id
       date
       games {
-        items {
-          id
-          resultPlayer1
-          resultPlayer2
-          createdAt
-          updatedAt
-        }
         nextToken
       }
       createdAt
@@ -56,13 +42,6 @@ export const deleteGameday = /* GraphQL */ `
       id
       date
       games {
-        items {
-          id
-          resultPlayer1
-          resultPlayer2
-          createdAt
-          updatedAt
-        }
         nextToken
       }
       createdAt
@@ -80,35 +59,20 @@ export const createGame = /* GraphQL */ `
       gameday {
         id
         date
-        games {
-          nextToken
-        }
         createdAt
         updatedAt
       }
       player1 {
         id
         name
-        game {
-          id
-          resultPlayer1
-          resultPlayer2
-          createdAt
-          updatedAt
-        }
+        test
         createdAt
         updatedAt
       }
       player2 {
         id
         name
-        game {
-          id
-          resultPlayer1
-          resultPlayer2
-          createdAt
-          updatedAt
-        }
+        test
         createdAt
         updatedAt
       }
@@ -129,35 +93,20 @@ export const updateGame = /* GraphQL */ `
       gameday {
         id
         date
-        games {
-          nextToken
-        }
         createdAt
         updatedAt
       }
       player1 {
         id
         name
-        game {
-          id
-          resultPlayer1
-          resultPlayer2
-          createdAt
-          updatedAt
-        }
+        test
         createdAt
         updatedAt
       }
       player2 {
         id
         name
-        game {
-          id
-          resultPlayer1
-          resultPlayer2
-          createdAt
-          updatedAt
-        }
+        test
         createdAt
         updatedAt
       }
@@ -178,35 +127,20 @@ export const deleteGame = /* GraphQL */ `
       gameday {
         id
         date
-        games {
-          nextToken
-        }
         createdAt
         updatedAt
       }
       player1 {
         id
         name
-        game {
-          id
-          resultPlayer1
-          resultPlayer2
-          createdAt
-          updatedAt
-        }
+        test
         createdAt
         updatedAt
       }
       player2 {
         id
         name
-        game {
-          id
-          resultPlayer1
-          resultPlayer2
-          createdAt
-          updatedAt
-        }
+        test
         createdAt
         updatedAt
       }
@@ -227,29 +161,12 @@ export const createPlayer = /* GraphQL */ `
       name
       game {
         id
-        gameday {
-          id
-          date
-          createdAt
-          updatedAt
-        }
-        player1 {
-          id
-          name
-          createdAt
-          updatedAt
-        }
-        player2 {
-          id
-          name
-          createdAt
-          updatedAt
-        }
         resultPlayer1
         resultPlayer2
         createdAt
         updatedAt
       }
+      test
       createdAt
       updatedAt
     }
@@ -265,29 +182,12 @@ export const updatePlayer = /* GraphQL */ `
       name
       game {
         id
-        gameday {
-          id
-          date
-          createdAt
-          updatedAt
-        }
-        player1 {
-          id
-          name
-          createdAt
-          updatedAt
-        }
-        player2 {
-          id
-          name
-          createdAt
-          updatedAt
-        }
         resultPlayer1
         resultPlayer2
         createdAt
         updatedAt
       }
+      test
       createdAt
       updatedAt
     }
@@ -303,29 +203,12 @@ export const deletePlayer = /* GraphQL */ `
       name
       game {
         id
-        gameday {
-          id
-          date
-          createdAt
-          updatedAt
-        }
-        player1 {
-          id
-          name
-          createdAt
-          updatedAt
-        }
-        player2 {
-          id
-          name
-          createdAt
-          updatedAt
-        }
         resultPlayer1
         resultPlayer2
         createdAt
         updatedAt
       }
+      test
       createdAt
       updatedAt
     }

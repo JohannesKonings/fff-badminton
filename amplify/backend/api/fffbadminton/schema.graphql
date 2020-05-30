@@ -15,4 +15,5 @@ type Player @model {
   id: ID!
   name: String
   game: Game @connection(name: "GamePlayer")
+  test: String
 }

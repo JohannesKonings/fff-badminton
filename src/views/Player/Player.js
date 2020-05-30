@@ -53,11 +53,14 @@ function Player() {
   const [playerItems, setPlayerItems] = useState([]);
 
   const readPlayers = async () => {
+    console.log("readPlayers before");
     const allPlayers = await API.graphql(graphqlOperation(listPlayers));
-    console.log(allPlayers.data.listPlayers.items);
+    console.log("readPlayers after");
+    console.log("player", allPlayers.data.listPlayers.items);
 
     const allPlayerItems = allPlayers.data.listPlayers.items;
 
+    console.log("sortPlayers");
     allPlayerItems.sort(function(a, b) {
       return a.id - b.id;
     });
@@ -71,6 +74,7 @@ function Player() {
   };
 
   useEffect(() => {
+    console.log("useEffect");
     Analytics.record({ name: "navPlayer" });
     readPlayers();
   }, []);
