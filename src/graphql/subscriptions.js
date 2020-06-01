@@ -53,14 +53,12 @@ export const onCreateGame = /* GraphQL */ `
       player1 {
         id
         name
-        test
         createdAt
         updatedAt
       }
       player2 {
         id
         name
-        test
         createdAt
         updatedAt
       }
@@ -84,14 +82,12 @@ export const onUpdateGame = /* GraphQL */ `
       player1 {
         id
         name
-        test
         createdAt
         updatedAt
       }
       player2 {
         id
         name
-        test
         createdAt
         updatedAt
       }
@@ -115,14 +111,12 @@ export const onDeleteGame = /* GraphQL */ `
       player1 {
         id
         name
-        test
         createdAt
         updatedAt
       }
       player2 {
         id
         name
-        test
         createdAt
         updatedAt
       }
@@ -145,7 +139,6 @@ export const onCreatePlayer = /* GraphQL */ `
         createdAt
         updatedAt
       }
-      test
       createdAt
       updatedAt
     }
@@ -163,7 +156,6 @@ export const onUpdatePlayer = /* GraphQL */ `
         createdAt
         updatedAt
       }
-      test
       createdAt
       updatedAt
     }
@@ -181,7 +173,6 @@ export const onDeletePlayer = /* GraphQL */ `
         createdAt
         updatedAt
       }
-      test
       createdAt
       updatedAt
     }
