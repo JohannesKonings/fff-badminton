@@ -7,10 +7,13 @@ export const onCreateGameday = /* GraphQL */ `
       id
       date
       games {
+        items {
+          id
+          resultPlayer1
+          resultPlayer2
+        }
         nextToken
       }
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -20,10 +23,13 @@ export const onUpdateGameday = /* GraphQL */ `
       id
       date
       games {
+        items {
+          id
+          resultPlayer1
+          resultPlayer2
+        }
         nextToken
       }
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -33,10 +39,13 @@ export const onDeleteGameday = /* GraphQL */ `
       id
       date
       games {
+        items {
+          id
+          resultPlayer1
+          resultPlayer2
+        }
         nextToken
       }
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -47,25 +56,30 @@ export const onCreateGame = /* GraphQL */ `
       gameday {
         id
         date
-        createdAt
-        updatedAt
+        games {
+          nextToken
+        }
       }
       player1 {
         id
         name
-        createdAt
-        updatedAt
+        game {
+          id
+          resultPlayer1
+          resultPlayer2
+        }
       }
       player2 {
         id
         name
-        createdAt
-        updatedAt
+        game {
+          id
+          resultPlayer1
+          resultPlayer2
+        }
       }
       resultPlayer1
       resultPlayer2
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -76,25 +90,30 @@ export const onUpdateGame = /* GraphQL */ `
       gameday {
         id
         date
-        createdAt
-        updatedAt
+        games {
+          nextToken
+        }
       }
       player1 {
         id
         name
-        createdAt
-        updatedAt
+        game {
+          id
+          resultPlayer1
+          resultPlayer2
+        }
       }
       player2 {
         id
         name
-        createdAt
-        updatedAt
+        game {
+          id
+          resultPlayer1
+          resultPlayer2
+        }
       }
       resultPlayer1
       resultPlayer2
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -105,25 +124,30 @@ export const onDeleteGame = /* GraphQL */ `
       gameday {
         id
         date
-        createdAt
-        updatedAt
+        games {
+          nextToken
+        }
       }
       player1 {
         id
         name
-        createdAt
-        updatedAt
+        game {
+          id
+          resultPlayer1
+          resultPlayer2
+        }
       }
       player2 {
         id
         name
-        createdAt
-        updatedAt
+        game {
+          id
+          resultPlayer1
+          resultPlayer2
+        }
       }
       resultPlayer1
       resultPlayer2
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -134,13 +158,21 @@ export const onCreatePlayer = /* GraphQL */ `
       name
       game {
         id
+        gameday {
+          id
+          date
+        }
+        player1 {
+          id
+          name
+        }
+        player2 {
+          id
+          name
+        }
         resultPlayer1
         resultPlayer2
-        createdAt
-        updatedAt
       }
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -151,13 +183,21 @@ export const onUpdatePlayer = /* GraphQL */ `
       name
       game {
         id
+        gameday {
+          id
+          date
+        }
+        player1 {
+          id
+          name
+        }
+        player2 {
+          id
+          name
+        }
         resultPlayer1
         resultPlayer2
-        createdAt
-        updatedAt
       }
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -168,13 +208,21 @@ export const onDeletePlayer = /* GraphQL */ `
       name
       game {
         id
+        gameday {
+          id
+          date
+        }
+        player1 {
+          id
+          name
+        }
+        player2 {
+          id
+          name
+        }
         resultPlayer1
         resultPlayer2
-        createdAt
-        updatedAt
       }
-      createdAt
-      updatedAt
     }
   }
 `;

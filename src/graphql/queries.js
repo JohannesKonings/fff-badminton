@@ -7,10 +7,13 @@ export const getGameday = /* GraphQL */ `
       id
       date
       games {
+        items {
+          id
+          resultPlayer1
+          resultPlayer2
+        }
         nextToken
       }
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -24,8 +27,9 @@ export const listGamedays = /* GraphQL */ `
       items {
         id
         date
-        createdAt
-        updatedAt
+        games {
+          nextToken
+        }
       }
       nextToken
     }
@@ -38,25 +42,30 @@ export const getGame = /* GraphQL */ `
       gameday {
         id
         date
-        createdAt
-        updatedAt
+        games {
+          nextToken
+        }
       }
       player1 {
         id
         name
-        createdAt
-        updatedAt
+        game {
+          id
+          resultPlayer1
+          resultPlayer2
+        }
       }
       player2 {
         id
         name
-        createdAt
-        updatedAt
+        game {
+          id
+          resultPlayer1
+          resultPlayer2
+        }
       }
       resultPlayer1
       resultPlayer2
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -69,10 +78,20 @@ export const listGames = /* GraphQL */ `
     listGames(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
+        gameday {
+          id
+          date
+        }
+        player1 {
+          id
+          name
+        }
+        player2 {
+          id
+          name
+        }
         resultPlayer1
         resultPlayer2
-        createdAt
-        updatedAt
       }
       nextToken
     }
@@ -85,13 +104,21 @@ export const getPlayer = /* GraphQL */ `
       name
       game {
         id
+        gameday {
+          id
+          date
+        }
+        player1 {
+          id
+          name
+        }
+        player2 {
+          id
+          name
+        }
         resultPlayer1
         resultPlayer2
-        createdAt
-        updatedAt
       }
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -105,8 +132,11 @@ export const listPlayers = /* GraphQL */ `
       items {
         id
         name
-        createdAt
-        updatedAt
+        game {
+          id
+          resultPlayer1
+          resultPlayer2
+        }
       }
       nextToken
     }
