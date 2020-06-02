@@ -44,3 +44,7 @@ amplify mock
 npx cypress open
 npm run cypress:open
 ```
+
+# semantic release
+
+GITHUB_TOKEN=\<<GitHub token\>> npx semantic-release --dry-run
