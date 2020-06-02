@@ -54,6 +54,12 @@
     "typescript": "3.7.5"
   },
   "devDependencies": {
+    "@semantic-release/changelog": "^5.0.1",
+    "@semantic-release/commit-analyzer": "^8.0.1",
+    "@semantic-release/git": "^9.0.0",
+    "@semantic-release/github": "^7.0.7",
+    "@semantic-release/npm": "^7.0.5",
+    "@semantic-release/release-notes-generator": "^9.0.1",
     "cypress": "^4.3.0",
     "eslint": "^6.8.0",
     "eslint-config-prettier": "6.10.0",
@@ -62,7 +68,8 @@
     "eslint-plugin-react": "^7.18.3",
     "gulp": "4.0.2",
     "gulp-append-prepend": "1.0.8",
-    "prettier": "1.19.1"
+    "prettier": "1.19.1",
+    "semantic-release": "^17.0.8"
   },
   "browserslist": {
     "production": [
