@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/JohannesKonings/fff-badminton/compare/v1.0.0...v1.0.1) (2020-06-02)
+
+
+### Bug Fixes
+
+* .gitignore after new amplify pull ([d5ceac8](https://github.com/JohannesKonings/fff-badminton/commit/d5ceac88d63d540b313c76e6a05b78adae603539))
+
 # 1.0.0 (2020-06-02)
 
 
