@@ -1,6 +1,9 @@
-name: test
+name: Test and release
 
-on: [push]
+on:
+  pull_request:
+  push:
+    branches: [ master ]
 
 jobs:
   test:
@@ -10,5 +13,24 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 12
-      - run: npm ci
-      - run: npm test
+      - name: Install
+        run: npm ci
+      - name: Test
+        run: npm test
+  release:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+    needs: [test]
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Setup Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: 12.x
+    - name: Install
+      run: npm ci
+    - name: Release
+      run: npx semantic-release
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
