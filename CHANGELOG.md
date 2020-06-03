@@ -1,3 +1,11 @@
+## [1.0.3](https://github.com/JohannesKonings/fff-badminton/compare/v1.0.2...v1.0.3) (2020-06-03)
+
+
+### Bug Fixes
+
+* CustomInput TextFieldValue insert again ([789b6a1](https://github.com/JohannesKonings/fff-badminton/commit/789b6a19b95d2295fe53fe29836e6626bfd0076d))
+* games insert with serial id ([7f38d6d](https://github.com/JohannesKonings/fff-badminton/commit/7f38d6df0acdcf353bdade5cd369f8fae1dd42df))
+
 ## [1.0.2](https://github.com/JohannesKonings/fff-badminton/compare/v1.0.1...v1.0.2) (2020-06-03)
 
 

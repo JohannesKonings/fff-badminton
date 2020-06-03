@@ -1,6 +1,6 @@
 {
   "name": "fff-badminton",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "An AWS Amplify Webapp for tracking badminton games based on the Creative Tim Template Material Dashboard React",
   "private": true,
   "main": "dist/index.js",
