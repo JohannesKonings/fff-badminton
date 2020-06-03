@@ -231,9 +231,13 @@ function Games() {
     const player2 = playerItems.find(player => player.id === selectedPlayer2);
     const gameDayId = selectedGameDay[1];
     const gameId = [gameDayId] + "#" + selectedPlayer1 + "#" + selectedPlayer2;
-    console.log(gameItems);
     const gameIdRegExp = new RegExp(gameId, "g");
-    const serialId = gameItems.toString().match(gameIdRegExp).length;
+    let serialId;
+    try {
+      serialId = gameItems.toString().match(gameIdRegExp).length + 1;
+    } catch (err) {
+      serialId = 1;
+    }
     console.log("serialId", serialId);
     const gameIdserialId = gameId + "#" + serialId;
 
