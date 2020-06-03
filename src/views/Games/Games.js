@@ -157,18 +157,22 @@ function Games() {
     resultPlayer1,
     resultPlayer2
   ) => {
-    await API.graphql(
-      graphqlOperation(createGame, {
-        input: {
-          id: gameId,
-          gameGamedayId: gameDayId,
-          gamePlayer1Id: player1Id,
-          gamePlayer2Id: player2Id,
-          resultPlayer1: resultPlayer1,
-          resultPlayer2: resultPlayer2
-        }
-      })
-    );
+    try {
+      await API.graphql(
+        graphqlOperation(createGame, {
+          input: {
+            id: gameId,
+            gameGamedayId: gameDayId,
+            gamePlayer1Id: player1Id,
+            gamePlayer2Id: player2Id,
+            resultPlayer1: resultPlayer1,
+            resultPlayer2: resultPlayer2
+          }
+        })
+      );
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const subscribeGameDay = async () => {
@@ -227,14 +231,19 @@ function Games() {
     const player2 = playerItems.find(player => player.id === selectedPlayer2);
     const gameDayId = selectedGameDay[1];
     const gameId = [gameDayId] + "#" + selectedPlayer1 + "#" + selectedPlayer2;
+    console.log(gameItems);
+    const gameIdRegExp = new RegExp(gameId, "g");
+    const serialId = gameItems.toString().match(gameIdRegExp).length;
+    console.log("serialId", serialId);
+    const gameIdserialId = gameId + "#" + serialId;
 
     addGame(
       gameDayId,
-      gameId,
+      gameIdserialId,
       player1.id,
       player2.id,
-      resultPlayer1,
-      resultPlayer2
+      parseInt(resultPlayer1),
+      parseInt(resultPlayer2)
     );
   }
 
