@@ -37,7 +37,8 @@ export default function Dashboard() {
   };
 
   const [allGamesItems, setGamesItems] = useState([]);
-  const [trainingsItems, setTrainingItems] = useState([]);
+  const [trainingItems, setTrainingItems] = useState([]);
+  const [gameItems, setGameItems] = useState([]);
   const [numberOfGameDays, setNumberOfGameDays] = useState();
   const [numberOfGames, setNumberOfGames] = useState();
   const [averageParticipants, setAverageParticipants] = useState();
@@ -96,15 +97,9 @@ export default function Dashboard() {
     }
   };
 
-  const createTrainingsList = async () => {
-    const gamesList = allGamesItems.flatMap(item => [
-      item.gameday.id + item.player1.name,
-      item.gameday.id + item.player2.name
-    ]);
-    let gamesListUnique = [...new Set(gamesList)];
-    gamesListUnique = gamesListUnique.map(x => x.substring(10));
+  const calculateTrainingsList = list => {
     var gamesListNo = [];
-    gamesListUnique.reduce(function(res, value) {
+    list.reduce(function(res, value) {
       if (!res[value]) {
         res[value] = { name: value, no: 0 };
         gamesListNo.push(res[value]);
@@ -119,7 +114,24 @@ export default function Dashboard() {
       return [item.name, item.no.toString()];
     });
 
+    return trainingsList;
+  };
+
+  const createTrainingsList = async () => {
+    const gamesList = allGamesItems.flatMap(item => [
+      item.gameday.id + item.player1.name,
+      item.gameday.id + item.player2.name
+    ]);
+    let gameDayListUnique = [...new Set(gamesList)];
+    gameDayListUnique = gameDayListUnique.map(x => x.substring(10));
+
+    const gameListUnique = gamesList.map(x => x.substring(10));
+
+    let trainingsList;
+    trainingsList = calculateTrainingsList(gameDayListUnique);
     setTrainingItems(trainingsList);
+    trainingsList = calculateTrainingsList(gameListUnique);
+    setGameItems(trainingsList);
   };
 
   const classes = useStyles();
@@ -183,7 +195,24 @@ export default function Dashboard() {
               <Table
                 tableHeaderColor="warning"
                 tableHead={["Name", "Anzahl"]}
-                tableData={trainingsItems}
+                tableData={trainingItems}
+              />
+            </CardBody>
+          </Card>
+        </GridItem>
+        <GridItem xs={12} sm={12} md={6}>
+          <Card>
+            <CardHeader color="warning">
+              <h4 className={classes.cardTitleWhite}>Gameweltmeister</h4>
+              <p className={classes.cardCategoryWhite}>
+                Anzahl der Spielteilnahmen
+              </p>
+            </CardHeader>
+            <CardBody>
+              <Table
+                tableHeaderColor="warning"
+                tableHead={["Name", "Anzahl"]}
+                tableData={gameItems}
               />
             </CardBody>
           </Card>
