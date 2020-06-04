@@ -83,8 +83,6 @@ export default function Dashboard() {
     gameDayPlayerCombined.push(...gameDayPlayer1);
     gameDayPlayerCombined.push(...gameDayPlayer2);
 
-    console.log(gameDayPlayerCombined);
-
     let set = new Set(gameDayPlayerCombined.map(JSON.stringify));
     let gameDayPlayerCombinedUnique = Array.from(set).map(JSON.parse);
 
@@ -100,11 +98,13 @@ export default function Dashboard() {
 
   const createTrainingsList = async () => {
     const gamesList = allGamesItems.flatMap(item => [
-      item.player1.name,
-      item.player2.name
+      item.gameday.id + item.player1.name,
+      item.gameday.id + item.player2.name
     ]);
+    let gamesListUnique = [...new Set(gamesList)];
+    gamesListUnique = gamesListUnique.map(x => x.substring(10));
     var gamesListNo = [];
-    gamesList.reduce(function(res, value) {
+    gamesListUnique.reduce(function(res, value) {
       if (!res[value]) {
         res[value] = { name: value, no: 0 };
         gamesListNo.push(res[value]);
