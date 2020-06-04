@@ -1,3 +1,15 @@
+# [1.1.0](https://github.com/JohannesKonings/fff-badminton/compare/v1.0.4...v1.1.0) (2020-06-04)
+
+
+### Bug Fixes
+
+* Trainingsweltmeister count participation per Gameday and not per ([b3a30eb](https://github.com/JohannesKonings/fff-badminton/commit/b3a30ebeb9e2f7f91fc1182a5cc4cfc0110cf1bc))
+
+
+### Features
+
+* Gameweltmeister added ([abd4694](https://github.com/JohannesKonings/fff-badminton/commit/abd4694770c4c92c7301bbdcc4a8913b6b30c94b))
+
 ## [1.0.4](https://github.com/JohannesKonings/fff-badminton/compare/v1.0.3...v1.0.4) (2020-06-03)
 
 
