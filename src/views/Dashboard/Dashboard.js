@@ -39,6 +39,7 @@ export default function Dashboard() {
   const [allGamesItems, setGamesItems] = useState([]);
   const [trainingItems, setTrainingItems] = useState([]);
   const [gameItems, setGameItems] = useState([]);
+  const [ewigeTabelle, setEwigeTabelle] = useState([]);
   const [numberOfGameDays, setNumberOfGameDays] = useState();
   const [numberOfGames, setNumberOfGames] = useState();
   const [averageParticipants, setAverageParticipants] = useState();
@@ -50,6 +51,7 @@ export default function Dashboard() {
   };
 
   useEffect(() => {
+    createEwigeTabelle();
     createTrainingsList();
     getNumberOfGameDays();
     getNumberOfGames();
@@ -134,6 +136,64 @@ export default function Dashboard() {
     setGameItems(trainingsList);
   };
 
+  const createEwigeTabelle = async () => {
+    console.log(allGamesItems);
+    const flatGameList = allGamesItems.flatMap(item => [
+      [
+        item.player1.name,
+        item.resultPlayer1 > item.resultPlayer2 ? 1 : 0,
+        item.resultPlayer1 > item.resultPlayer2 ? 0 : 1,
+        item.resultPlayer1,
+        item.resultPlayer2
+      ],
+      [
+        item.player2.name,
+        item.resultPlayer2 > item.resultPlayer1 ? 1 : 0,
+        item.resultPlayer2 > item.resultPlayer1 ? 0 : 1,
+        item.resultPlayer2,
+        item.resultPlayer1
+      ]
+    ]);
+    console.log(flatGameList);
+
+    let gamesListNo = [];
+    flatGameList.reduce(function(res, value) {
+      console.log("res", res);
+      console.log("value", value);
+      const name = value[0];
+      if (!res[name]) {
+        res[name] = {
+          name: name,
+          gewonnen: value[1],
+          verloren: value[2],
+          punkte: value[3],
+          gegenpunkte: value[4]
+        };
+        gamesListNo.push(res[name]);
+      }
+      res[name].gewonnen += value[1];
+      res[name].verloren += value[2];
+      res[name].punkte += value[3];
+      res[name].gegenpunkte += value[4];
+      return res;
+    }, {});
+    console.log("gamesListNo", gamesListNo);
+
+    const ewigeTabelle = gamesListNo.map(item => {
+      return [
+        item.name,
+        item.gewonnen.toString(),
+        item.verloren.toString(),
+        item.punkte.toString(),
+        item.gegenpunkte.toString()
+      ];
+    });
+
+    console.log("ewigeTabelle", ewigeTabelle)
+
+    setEwigeTabelle(ewigeTabelle);
+  };
+
   const classes = useStyles();
   return (
     <div>
@@ -179,6 +239,31 @@ export default function Dashboard() {
               <p className={classes.cardCategory}>average participants</p>
               <h3 className={classes.cardTitle}>{averageParticipants}</h3>
             </CardHeader>
+          </Card>
+        </GridItem>
+      </GridContainer>
+      <GridContainer>
+        <GridItem xs={12} sm={12} md={12}>
+          <Card>
+            <CardHeader color="success">
+              <CardIcon color="danger">
+                <Icon>star</Icon>
+              </CardIcon>
+              <h4 className={classes.cardTitleWhite}>Ewige Tabelle</h4>
+            </CardHeader>
+            <CardBody>
+              <Table
+                tableHeaderColor="warning"
+                tableHead={[
+                  "Name",
+                  "gewonnen",
+                  "verloren",
+                  "Punkte",
+                  "Gegenpunkte"
+                ]}
+                tableData={ewigeTabelle}
+              />
+            </CardBody>
           </Card>
         </GridItem>
       </GridContainer>
