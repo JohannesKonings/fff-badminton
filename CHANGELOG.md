@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/JohannesKonings/fff-badminton/compare/v1.2.0...v1.3.0) (2020-06-06)
+
+
+### Features
+
+* ewige Tabelle added ([584882a](https://github.com/JohannesKonings/fff-badminton/commit/584882a9c8dedb372311723e1b84b1696455bcaa))
+
 # [1.2.0](https://github.com/JohannesKonings/fff-badminton/compare/v1.1.0...v1.2.0) (2020-06-06)
 
 
