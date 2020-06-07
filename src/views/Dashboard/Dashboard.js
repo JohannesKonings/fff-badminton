@@ -137,7 +137,6 @@ export default function Dashboard() {
   };
 
   const createEwigeTabelle = async () => {
-    console.log(allGamesItems);
     const flatGameList = allGamesItems.flatMap(item => [
       [
         item.player1.name,
@@ -154,20 +153,17 @@ export default function Dashboard() {
         item.resultPlayer1
       ]
     ]);
-    console.log(flatGameList);
 
     let gamesListNo = [];
     flatGameList.reduce(function(res, value) {
-      console.log("res", res);
-      console.log("value", value);
       const name = value[0];
       if (!res[name]) {
         res[name] = {
           name: name,
-          gewonnen: value[1],
-          verloren: value[2],
-          punkte: value[3],
-          gegenpunkte: value[4]
+          gewonnen: 0,
+          verloren: 0,
+          punkte: 0,
+          gegenpunkte: 0
         };
         gamesListNo.push(res[name]);
       }
@@ -177,7 +173,6 @@ export default function Dashboard() {
       res[name].gegenpunkte += value[4];
       return res;
     }, {});
-    console.log("gamesListNo", gamesListNo);
 
     const ewigeTabelle = gamesListNo.map(item => {
       return [
@@ -188,8 +183,6 @@ export default function Dashboard() {
         item.gegenpunkte.toString()
       ];
     });
-
-    console.log("ewigeTabelle", ewigeTabelle)
 
     setEwigeTabelle(ewigeTabelle);
   };
