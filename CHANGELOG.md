@@ -1,3 +1,10 @@
+## [1.3.1](https://github.com/JohannesKonings/fff-badminton/compare/v1.3.0...v1.3.1) (2020-06-07)
+
+
+### Bug Fixes
+
+* wrong calculation ewige tabelle fixed ([bbe6306](https://github.com/JohannesKonings/fff-badminton/commit/bbe63065870968e4fd3b1a076e36b51844ebe489))
+
 # [1.3.0](https://github.com/JohannesKonings/fff-badminton/compare/v1.2.0...v1.3.0) (2020-06-06)
 
 
