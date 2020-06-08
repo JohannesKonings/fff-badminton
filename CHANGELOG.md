@@ -1,3 +1,10 @@
+## [1.3.2](https://github.com/JohannesKonings/fff-badminton/compare/v1.3.1...v1.3.2) (2020-06-08)
+
+
+### Bug Fixes
+
+* move from aws-amplify-react to  @aws-amplify/ui-react ([a6385af](https://github.com/JohannesKonings/fff-badminton/commit/a6385af9a543628595dc07b95e0ba5b326e28e67)), closes [/github.com/aws-amplify/amplify-js/issues/5464#issuecomment-617070438](https://github.com//github.com/aws-amplify/amplify-js/issues/5464/issues/issuecomment-617070438)
+
 ## [1.3.1](https://github.com/JohannesKonings/fff-badminton/compare/v1.3.0...v1.3.1) (2020-06-07)
 
 
