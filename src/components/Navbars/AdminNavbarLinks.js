@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link, useHistory } from "react-router-dom";
 import classNames from "classnames";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
@@ -36,6 +37,8 @@ export default function AdminNavbarLinks() {
     onPageRendered();
   }, []);
 
+  const history = useHistory();
+
   const classes = useStyles();
   const [openNotification, setOpenNotification] = React.useState(null);
   const [openProfile, setOpenProfile] = React.useState(null);
@@ -62,6 +65,7 @@ export default function AdminNavbarLinks() {
   const handleLogout = () => {
     setOpenProfile(null);
     Auth.signOut();
+    history.push("/");
   };
   return (
     <div>
