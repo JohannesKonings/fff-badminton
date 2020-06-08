@@ -25,7 +25,8 @@
     "react-dom": "16.13.1",
     "react-router-dom": "5.2.0",
     "react-scripts": "3.4.1",
-    "react-swipeable-views": "0.13.9"
+    "react-swipeable-views": "0.13.9",
+    "snyk": "^1.336.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -37,7 +38,9 @@
     "lint:fix": "eslint . --ext=js,jsx --fix;  exit 0",
     "build-package-css": "cp src/assets/css/material-dashboard-react.css dist/material-dashboard-react.css",
     "build-package": "npm run build-package-css && babel src --out-dir dist",
-    "cypress:open": "cypress open"
+    "cypress:open": "cypress open",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "repository": {
     "type": "git",
@@ -86,5 +89,6 @@
     "CHANGELOG.md",
     "package.json",
     "package-lock.json"
-  ]
+  ],
+  "snyk": true
 }

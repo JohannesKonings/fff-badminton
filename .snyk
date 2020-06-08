@@ -1716,3 +1716,15 @@ patch:
         patched: '2020-05-01T02:39:38.732Z'
     - react-scripts > jest > jest-cli > @jest/core > @jest/reporters > jest-runtime > jest-config > @jest/test-sequencer > jest-runner > jest-jasmine2 > @jest/environment > @jest/transform > @babel/core > @babel/helper-module-transforms > @babel/helper-replace-supers > @babel/traverse > @babel/helper-function-name > @babel/template > @babel/types > lodash:
         patched: '2020-05-01T02:39:38.732Z'
+    - aws-amplify > @aws-amplify/storage > sinon > @sinonjs/samsam > lodash:
+        patched: '2020-06-08T10:49:15.119Z'
+    - aws-amplify > @aws-amplify/storage > sinon > @sinonjs/formatio > @sinonjs/samsam > lodash:
+        patched: '2020-06-08T10:49:15.119Z'
+    - aws-amplify > @aws-amplify/predictions > @aws-amplify/storage > sinon > @sinonjs/samsam > lodash:
+        patched: '2020-06-08T10:49:15.119Z'
+    - aws-amplify > @aws-amplify/storage > sinon > nise > @sinonjs/formatio > @sinonjs/samsam > lodash:
+        patched: '2020-06-08T10:49:15.119Z'
+    - aws-amplify > @aws-amplify/predictions > @aws-amplify/storage > sinon > @sinonjs/formatio > @sinonjs/samsam > lodash:
+        patched: '2020-06-08T10:49:15.119Z'
+    - aws-amplify > @aws-amplify/predictions > @aws-amplify/storage > sinon > nise > @sinonjs/formatio > @sinonjs/samsam > lodash:
+        patched: '2020-06-08T10:49:15.119Z'
