@@ -1,3 +1,11 @@
+## [1.3.3](https://github.com/JohannesKonings/fff-badminton/compare/v1.3.2...v1.3.3) (2020-06-10)
+
+
+### Bug Fixes
+
+* upgrade @aws-amplify/auth from 3.2.12 to 3.2.13 ([#91](https://github.com/JohannesKonings/fff-badminton/issues/91)) ([ffda9a5](https://github.com/JohannesKonings/fff-badminton/commit/ffda9a579b104b0fd196271ddc4bbaff0f5e298f))
+* upgrade aws-amplify from 3.0.16 to 3.0.17 ([1de9ea5](https://github.com/JohannesKonings/fff-badminton/commit/1de9ea55be85e87e60972b4d3858f635c583dfde))
+
 ## [1.3.2](https://github.com/JohannesKonings/fff-badminton/compare/v1.3.1...v1.3.2) (2020-06-08)
 
 
