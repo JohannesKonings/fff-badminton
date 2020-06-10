@@ -1,3 +1,10 @@
+## [1.3.4](https://github.com/JohannesKonings/fff-badminton/compare/v1.3.3...v1.3.4) (2020-06-10)
+
+
+### Bug Fixes
+
+* upgrade @aws-amplify/core from 3.3.2 to 3.3.3 ([#90](https://github.com/JohannesKonings/fff-badminton/issues/90)) ([cc243e1](https://github.com/JohannesKonings/fff-badminton/commit/cc243e149322affd42401adae1445dc8845b451e))
+
 ## [1.3.3](https://github.com/JohannesKonings/fff-badminton/compare/v1.3.2...v1.3.3) (2020-06-10)
 
 
