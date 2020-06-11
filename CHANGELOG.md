@@ -1,3 +1,10 @@
+## [1.3.5](https://github.com/JohannesKonings/fff-badminton/compare/v1.3.4...v1.3.5) (2020-06-11)
+
+
+### Bug Fixes
+
+* unused variable removed ([816d9c7](https://github.com/JohannesKonings/fff-badminton/commit/816d9c7f83df4d71821c84699253e82d2bb058ed))
+
 ## [1.3.4](https://github.com/JohannesKonings/fff-badminton/compare/v1.3.3...v1.3.4) (2020-06-10)
 
 
