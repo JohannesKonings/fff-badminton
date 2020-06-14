@@ -184,6 +184,21 @@ export default function Dashboard() {
       ];
     });
 
+    //sort
+    const sortCols = (a, b, attrs) =>
+      Object.keys(attrs).reduce(
+        (diff, k) => (diff == 0 ? attrs[k](a[k], b[k]) : diff),
+        0
+      );
+    ewigeTabelle.sort((a, b) =>
+      sortCols(a, b, {
+        1: (a, b) => b - a,
+        2: (a, b) => a - b,
+        3: (a, b) => b - a,
+        4: (a, b) => a - b
+      })
+    );
+
     setEwigeTabelle(ewigeTabelle);
   };
 
