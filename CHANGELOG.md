@@ -1,3 +1,10 @@
+## [1.3.8](https://github.com/JohannesKonings/fff-badminton/compare/v1.3.7...v1.3.8) (2020-06-14)
+
+
+### Bug Fixes
+
+* sorting for ewige tabelle added ([#95](https://github.com/JohannesKonings/fff-badminton/issues/95)) ([b795c34](https://github.com/JohannesKonings/fff-badminton/commit/b795c34d191d112ca694e542457b2d8d6961ff1d))
+
 ## [1.3.7](https://github.com/JohannesKonings/fff-badminton/compare/v1.3.6...v1.3.7) (2020-06-14)
 
 
