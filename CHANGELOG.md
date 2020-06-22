@@ -1,3 +1,10 @@
+## [1.3.10](https://github.com/JohannesKonings/fff-badminton/compare/v1.3.9...v1.3.10) (2020-06-22)
+
+
+### Bug Fixes
+
+* @aws-amplify/cache added ([a5269ad](https://github.com/JohannesKonings/fff-badminton/commit/a5269adb71c9befb8b31d9ef353ae0433b69c5c0))
+
 ## [1.3.9](https://github.com/JohannesKonings/fff-badminton/compare/v1.3.8...v1.3.9) (2020-06-22)
 
 
