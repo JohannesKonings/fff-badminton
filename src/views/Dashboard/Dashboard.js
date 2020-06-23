@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from "react";
+import ChartistGraph from "react-chartist";
+import Chartist from "chartist";
+import Timeline from "@material-ui/icons/Timeline";
 // @material-ui/core
 import { makeStyles } from "@material-ui/core/styles";
 import Icon from "@material-ui/core/Icon";
@@ -40,6 +43,11 @@ export default function Dashboard() {
   const [trainingItems, setTrainingItems] = useState([]);
   const [gameItems, setGameItems] = useState([]);
   const [ewigeTabelle, setEwigeTabelle] = useState([]);
+  const [ewigeTabelleChanges, setEwigeTabelleChanges] = useState({
+    data: {},
+    options: {},
+    animation: {}
+  });
   const [numberOfGameDays, setNumberOfGameDays] = useState();
   const [numberOfGames, setNumberOfGames] = useState();
   const [averageParticipants, setAverageParticipants] = useState();
@@ -52,6 +60,7 @@ export default function Dashboard() {
 
   useEffect(() => {
     createEwigeTabelle();
+    createEwigeTabelleChanges();
     createTrainingsList();
     getNumberOfGameDays();
     getNumberOfGames();
@@ -202,6 +211,79 @@ export default function Dashboard() {
     setEwigeTabelle(ewigeTabelle);
   };
 
+  const createEwigeTabelleChanges = async () => {
+    const colouredLinesChart = {
+      data: {
+        labels: [
+          "'06",
+          "'07",
+          "'08",
+          "'09",
+          "'10",
+          "'11",
+          "'12",
+          "'13",
+          "'14",
+          "'15"
+        ],
+        series: [
+          [287, 385, 490, 554, 586, 698, 695, 752, 788, 846, 944],
+          [67, 152, 143, 287, 335, 435, 437, 539, 542, 544, 647],
+          [23, 113, 67, 190, 239, 307, 308, 439, 410, 410, 509]
+        ]
+      },
+      options: {
+        lineSmooth: Chartist.Interpolation.cardinal({
+          tension: 10
+        }),
+        axisY: {
+          showGrid: true,
+          offset: 40,
+          labelInterpolationFnc: function(value) {
+            return value + "JK";
+          },
+        },
+        axisX: {
+          showGrid: true
+        },
+        low: 0,
+        high: 1000,
+        showPoint: true,
+        height: "300px"
+      },
+      animation: {
+        draw: function(data) {
+          if (data.type === "line" || data.type === "area") {
+            data.element.animate({
+              d: {
+                begin: 600,
+                dur: 700,
+                from: data.path
+                  .clone()
+                  .scale(1, 0)
+                  .translate(0, data.chartRect.height())
+                  .stringify(),
+                to: data.path.clone().stringify(),
+                easing: Chartist.Svg.Easing.easeOutQuint
+              }
+            });
+          } else if (data.type === "point") {
+            data.element.animate({
+              opacity: {
+                begin: (data.index + 1) * 80,
+                dur: 500,
+                from: 0,
+                to: 1,
+                easing: "ease"
+              }
+            });
+          }
+        }
+      }
+    };
+    setEwigeTabelleChanges(colouredLinesChart);
+  };
+
   const classes = useStyles();
   return (
     <div>
@@ -270,6 +352,26 @@ export default function Dashboard() {
                   "Gegenpunkte"
                 ]}
                 tableData={ewigeTabelle}
+              />
+            </CardBody>
+          </Card>
+        </GridItem>
+        <GridItem xs={12} sm={12} md={12}>
+          <Card>
+            <CardHeader color="warning" icon>
+              <CardIcon color="warning">
+                <Timeline />
+              </CardIcon>
+              <h4 className={classes.cardIconTitle}>
+                Coloured Lines Chart <small>- Rounded</small>
+              </h4>
+            </CardHeader>
+            <CardBody>
+              <ChartistGraph
+                data={ewigeTabelleChanges.data}
+                type="Line"
+                options={ewigeTabelleChanges.options}
+                listener={ewigeTabelleChanges.animation}
               />
             </CardBody>
           </Card>
