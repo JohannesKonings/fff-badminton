@@ -1,3 +1,10 @@
+## [1.3.11](https://github.com/JohannesKonings/fff-badminton/compare/v1.3.10...v1.3.11) (2020-07-04)
+
+
+### Bug Fixes
+
+* upgrade @material-ui/core from 4.10.2 to 4.11.0 ([#103](https://github.com/JohannesKonings/fff-badminton/issues/103)) ([af54c0c](https://github.com/JohannesKonings/fff-badminton/commit/af54c0ca8d4a26fc3b46df7b9f669b2a2c07fcdb))
+
 ## [1.3.10](https://github.com/JohannesKonings/fff-badminton/compare/v1.3.9...v1.3.10) (2020-06-22)
 
 
