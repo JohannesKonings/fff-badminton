@@ -1,4 +1,7 @@
 {
+    "providers": [
+        "awscloudformation"
+    ],
     "projectName": "fff-badminton",
     "version": "3.0",
     "frontend": "javascript",
@@ -10,8 +13,5 @@
             "BuildCommand": "npm.cmd run-script build",
             "StartCommand": "npm.cmd run-script start"
         }
-    },
-    "providers": [
-        "awscloudformation"
-    ]
+    }
 }
