@@ -1,3 +1,14 @@
+## [1.3.12](https://github.com/JohannesKonings/fff-badminton/compare/v1.3.11...v1.3.12) (2020-07-19)
+
+
+### Bug Fixes
+
+* upgrade @aws-amplify/auth from 3.2.14 to 3.3.0 ([#104](https://github.com/JohannesKonings/fff-badminton/issues/104)) ([09212a3](https://github.com/JohannesKonings/fff-badminton/commit/09212a37a22c30e290a9acd1bb620bbd956cd1ce))
+* upgrade @aws-amplify/cache from 3.1.17 to 3.1.18 ([#105](https://github.com/JohannesKonings/fff-badminton/issues/105)) ([2e88720](https://github.com/JohannesKonings/fff-badminton/commit/2e88720851519c4e9069dfa7fa13a35b62bfc571))
+* upgrade @aws-amplify/core from 3.4.0 to 3.4.1 ([#106](https://github.com/JohannesKonings/fff-badminton/issues/106)) ([a8799a0](https://github.com/JohannesKonings/fff-badminton/commit/a8799a01f1b764ab9338ffebdb83d1075058de09))
+* upgrade @aws-amplify/ui-react from 0.2.9 to 0.2.10 ([#107](https://github.com/JohannesKonings/fff-badminton/issues/107)) ([fd59b2a](https://github.com/JohannesKonings/fff-badminton/commit/fd59b2a3ac9f641f9fdbffb412114576c73b0e8e))
+* upgrade aws-amplify from 3.0.18 to 3.0.19 ([#108](https://github.com/JohannesKonings/fff-badminton/issues/108)) ([c7152fb](https://github.com/JohannesKonings/fff-badminton/commit/c7152fb974bd1e73e70d65ec3eb898bbfe330fb3))
+
 ## [1.3.11](https://github.com/JohannesKonings/fff-badminton/compare/v1.3.10...v1.3.11) (2020-07-04)
 
 
