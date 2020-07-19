@@ -1,3 +1,10 @@
+## [1.3.13](https://github.com/JohannesKonings/fff-badminton/compare/v1.3.12...v1.3.13) (2020-07-19)
+
+
+### Bug Fixes
+
+* auth problem after amplify modules upgrade fixed ([cffec15](https://github.com/JohannesKonings/fff-badminton/commit/cffec15973fd8eed839497ac4e9e9861355270e0))
+
 ## [1.3.12](https://github.com/JohannesKonings/fff-badminton/compare/v1.3.11...v1.3.12) (2020-07-19)
 
 
