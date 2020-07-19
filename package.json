@@ -5,7 +5,7 @@
   "private": true,
   "main": "dist/index.js",
   "dependencies": {
-    "@aws-amplify/auth": "^3.2.14",
+    "@aws-amplify/auth": "^3.3.0",
     "@aws-amplify/cache": "^3.1.18",
     "@aws-amplify/core": "^3.4.1",
     "@aws-amplify/ui-react": "^0.2.10",
