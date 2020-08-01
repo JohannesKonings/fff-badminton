@@ -1,3 +1,10 @@
+## [1.3.16](https://github.com/JohannesKonings/fff-badminton/compare/v1.3.15...v1.3.16) (2020-08-01)
+
+
+### Bug Fixes
+
+* package-lock refresh after upgrade modules ([3d22eed](https://github.com/JohannesKonings/fff-badminton/commit/3d22eed1aa30e46fe0e332ea0012b586f2a0996a))
+
 ## [1.3.15](https://github.com/JohannesKonings/fff-badminton/compare/v1.3.14...v1.3.15) (2020-08-01)
 
 
