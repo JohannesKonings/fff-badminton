@@ -1,3 +1,10 @@
+## [1.3.18](https://github.com/JohannesKonings/fff-badminton/compare/v1.3.17...v1.3.18) (2020-08-10)
+
+
+### Bug Fixes
+
+* package-lock-json after update modules ([c70f4ac](https://github.com/JohannesKonings/fff-badminton/commit/c70f4acbac581261f1c9ad31fe81f8eaeea1b669))
+
 ## [1.3.17](https://github.com/JohannesKonings/fff-badminton/compare/v1.3.16...v1.3.17) (2020-08-10)
 
 
