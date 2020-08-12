@@ -1,3 +1,10 @@
+## [1.3.19](https://github.com/JohannesKonings/fff-badminton/compare/v1.3.18...v1.3.19) (2020-08-12)
+
+
+### Bug Fixes
+
+* package.json & package-lock.json to reduce vulnerabilities ([#124](https://github.com/JohannesKonings/fff-badminton/issues/124)) ([1b7d8f5](https://github.com/JohannesKonings/fff-badminton/commit/1b7d8f569af3bac09744e8a03981e69a6cc8cf00))
+
 ## [1.3.18](https://github.com/JohannesKonings/fff-badminton/compare/v1.3.17...v1.3.18) (2020-08-10)
 
 
