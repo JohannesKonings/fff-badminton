@@ -1,3 +1,10 @@
+## [1.3.22](https://github.com/JohannesKonings/fff-badminton/compare/v1.3.21...v1.3.22) (2020-08-24)
+
+
+### Bug Fixes
+
+* upgrade @aws-amplify/auth from 3.3.4 to 3.3.5 ([#131](https://github.com/JohannesKonings/fff-badminton/issues/131)) ([dbe4358](https://github.com/JohannesKonings/fff-badminton/commit/dbe435865ce9e6803bf6bcc8759aea4beed7bca4))
+
 ## [1.3.21](https://github.com/JohannesKonings/fff-badminton/compare/v1.3.20...v1.3.21) (2020-08-24)
 
 
