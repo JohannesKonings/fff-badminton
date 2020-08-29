@@ -25,7 +25,7 @@ import { onCreateGameday, onCreateGame } from "./../../graphql/subscriptions";
 import DateFnsUtils from "@date-io/date-fns";
 import {
   MuiPickersUtilsProvider,
-  KeyboardDatePicker
+  KeyboardDatePicker,
 } from "@material-ui/pickers";
 
 Amplify.configure(awsconfig);
@@ -37,11 +37,11 @@ const styles = {
       margin: "0",
       fontSize: "14px",
       marginTop: "0",
-      marginBottom: "0"
+      marginBottom: "0",
     },
     "& a,& a:hover,& a:focus": {
-      color: "#FFFFFF"
-    }
+      color: "#FFFFFF",
+    },
   },
   cardTitleWhite: {
     color: "#FFFFFF",
@@ -55,9 +55,9 @@ const styles = {
       color: "#777",
       fontSize: "65%",
       fontWeight: "400",
-      lineHeight: "1"
-    }
-  }
+      lineHeight: "1",
+    },
+  },
 };
 
 const useStyles = makeStyles(styles);
@@ -91,33 +91,35 @@ function Games() {
 
     const allGameDayItems = allGameDays.data.listGamedays.items;
 
-    const tableArray = allGameDayItems.map(item => {
-      return [item.id, item.date];
+    allGameDayItems.sort((a, b) => {
+      const dateA = a.id.replace(/-/g,'');
+      const dateB = b.id.replace(/-/g,'');
+      return dateA - dateB;
     });
 
-    tableArray.sort(function(a, b) {
-      return a.id - b.id;
+    const tableArray = allGameDayItems.map((item) => {
+      return [item.id, item.date];
     });
 
     setGameDayItems(tableArray);
   };
 
-  const readGames = async gameDayId => {
+  const readGames = async (gameDayId) => {
     const allGames = await API.graphql(
       graphqlOperation(listGames, {
-        filter: { id: { beginsWith: gameDayId } }
+        filter: { id: { beginsWith: gameDayId } },
       })
     );
 
     const allGamesItems = allGames.data.listGames.items;
 
-    const tableArray = allGamesItems.map(item => {
+    const tableArray = allGamesItems.map((item) => {
       return [
         item.id,
         item.player1.name,
         item.player2.name,
         item.resultPlayer1.toString(),
-        item.resultPlayer2.toString()
+        item.resultPlayer2.toString(),
       ];
     });
 
@@ -139,12 +141,12 @@ function Games() {
       "-",
       ("0" + (d.getMonth() + 1)).slice(-2),
       "-",
-      ("0" + d.getDate()).slice(-2)
+      ("0" + d.getDate()).slice(-2),
     ].join("");
 
     await API.graphql(
       graphqlOperation(createGameday, {
-        input: { id: gameDayDateString, date: gameDayDateString }
+        input: { id: gameDayDateString, date: gameDayDateString },
       })
     );
   };
@@ -166,8 +168,8 @@ function Games() {
             gamePlayer1Id: player1Id,
             gamePlayer2Id: player2Id,
             resultPlayer1: resultPlayer1,
-            resultPlayer2: resultPlayer2
-          }
+            resultPlayer2: resultPlayer2,
+          },
         })
       );
     } catch (err) {
@@ -177,44 +179,44 @@ function Games() {
 
   const subscribeGameDay = async () => {
     await API.graphql(graphqlOperation(onCreateGameday)).subscribe({
-      next: subonCreateGameday => {
+      next: (subonCreateGameday) => {
         const variant = "success";
         enqueueSnackbar(
           "Gamday created: " + subonCreateGameday.value.data.onCreateGameday.id,
           { variant }
         );
 
-        setGameDayItems(gameDayItems => [
+        setGameDayItems((gameDayItems) => [
           ...gameDayItems,
           [
             subonCreateGameday.value.data.onCreateGameday.id,
-            subonCreateGameday.value.data.onCreateGameday.date
-          ]
+            subonCreateGameday.value.data.onCreateGameday.date,
+          ],
         ]);
-      }
+      },
     });
   };
 
   const subscribeGame = async () => {
     await API.graphql(graphqlOperation(onCreateGame)).subscribe({
-      next: subonCreateGame => {
+      next: (subonCreateGame) => {
         const variant = "success";
         enqueueSnackbar(
           "Game created: " + subonCreateGame.value.data.onCreateGame.id,
           { variant }
         );
 
-        setGameItems(gameItems => [
+        setGameItems((gameItems) => [
           ...gameItems,
           [
             subonCreateGame.value.data.onCreateGame.id,
             subonCreateGame.value.data.onCreateGame.player1.name,
             subonCreateGame.value.data.onCreateGame.player2.name,
             subonCreateGame.value.data.onCreateGame.resultPlayer1.toString(),
-            subonCreateGame.value.data.onCreateGame.resultPlayer2.toString()
-          ]
+            subonCreateGame.value.data.onCreateGame.resultPlayer2.toString(),
+          ],
         ]);
-      }
+      },
     });
   };
 
@@ -227,8 +229,8 @@ function Games() {
   }
 
   function onClickCreateGame() {
-    const player1 = playerItems.find(player => player.id === selectedPlayer1);
-    const player2 = playerItems.find(player => player.id === selectedPlayer2);
+    const player1 = playerItems.find((player) => player.id === selectedPlayer1);
+    const player2 = playerItems.find((player) => player.id === selectedPlayer2);
     const gameDayId = selectedGameDay[1];
     const gameId = [gameDayId] + "#" + selectedPlayer1 + "#" + selectedPlayer2;
     const gameIdRegExp = new RegExp(gameId, "g");
@@ -253,7 +255,7 @@ function Games() {
 
   const classes = useStyles();
 
-  const handleDateChange = date => {
+  const handleDateChange = (date) => {
     setSelectedDate(date);
   };
 
@@ -263,19 +265,19 @@ function Games() {
     setSelectedGameDay(gameDayItems[key]);
   };
 
-  const handleSelectedPlayer1 = value => {
+  const handleSelectedPlayer1 = (value) => {
     setSelectedPlayer1(value);
   };
 
-  const handleSelectedPlayer2 = value => {
+  const handleSelectedPlayer2 = (value) => {
     setSelectedPlayer2(value);
   };
 
-  const handleResultPlayer1 = value => {
+  const handleResultPlayer1 = (value) => {
     setResultPlayer1(value);
   };
 
-  const handleResultPlayer2 = value => {
+  const handleResultPlayer2 = (value) => {
     setResultPlayer2(value);
   };
 
@@ -307,7 +309,7 @@ function Games() {
                     value={selectedDate}
                     onChange={handleDateChange}
                     KeyboardButtonProps={{
-                      "aria-label": "change date"
+                      "aria-label": "change date",
                     }}
                   />
                 </MuiPickersUtilsProvider>
@@ -352,7 +354,7 @@ function Games() {
                     labelText="Player1"
                     id="player1"
                     formControlProps={{
-                      fullWidth: true
+                      fullWidth: true,
                     }}
                     menuItems={playerItems}
                     textFieldValue={handleSelectedPlayer1}
@@ -363,7 +365,7 @@ function Games() {
                     labelText="Player2"
                     id="player2"
                     formControlProps={{
-                      fullWidth: true
+                      fullWidth: true,
                     }}
                     menuItems={playerItems}
                     textFieldValue={handleSelectedPlayer2}
@@ -374,10 +376,10 @@ function Games() {
                     labelText="ResultPlayer1"
                     id="resultPlayer1"
                     formControlProps={{
-                      fullWidth: true
+                      fullWidth: true,
                     }}
                     inputProps={{
-                      type: "number"
+                      type: "number",
                     }}
                     textFieldValue={handleResultPlayer1}
                   />
@@ -387,10 +389,10 @@ function Games() {
                     labelText="ResultPlayer2"
                     id="resultPlayer2"
                     formControlProps={{
-                      fullWidth: true
+                      fullWidth: true,
                     }}
                     inputProps={{
-                      type: "number"
+                      type: "number",
                     }}
                     textFieldValue={handleResultPlayer2}
                   />
@@ -412,7 +414,7 @@ function Games() {
                 "Player1",
                 "Player2",
                 "ResultPlayer1",
-                "ResultPlayer2"
+                "ResultPlayer2",
               ]}
               tableData={gameItems}
             />
