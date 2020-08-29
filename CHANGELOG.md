@@ -1,3 +1,10 @@
+## [1.3.23](https://github.com/JohannesKonings/fff-badminton/compare/v1.3.22...v1.3.23) (2020-08-29)
+
+
+### Bug Fixes
+
+* upgrade date-fns from 2.15.0 to 2.16.0 ([#137](https://github.com/JohannesKonings/fff-badminton/issues/137)) ([1ee0175](https://github.com/JohannesKonings/fff-badminton/commit/1ee0175b68b0639776ffaec36482bbe83f589bd5))
+
 ## [1.3.22](https://github.com/JohannesKonings/fff-badminton/compare/v1.3.21...v1.3.22) (2020-08-24)
 
 
