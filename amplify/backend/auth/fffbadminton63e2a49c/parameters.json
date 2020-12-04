@@ -10,7 +10,7 @@
     "mfaTypes": [
         "SMS Text Message"
     ],
-    "smsAuthenticationMessage": "Your authentication code is {####} (test JK)",
+    "smsAuthenticationMessage": "Your authentication code is {####} (test JK 2)",
     "smsVerificationMessage": "Your verification code is {####}",
     "emailVerificationSubject": "Your verification code",
     "emailVerificationMessage": "Your verification code is {####}",
