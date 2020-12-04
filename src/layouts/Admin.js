@@ -18,7 +18,7 @@ import bgImage from "assets/img/sidebar-2.jpg";
 import logo from "assets/img/fff.png";
 
 import Amplify from "aws-amplify";
-import { AmplifyAuthenticator } from "@aws-amplify/ui-react";
+import { AmplifyAuthenticator, AmplifySignIn } from "@aws-amplify/ui-react";
 import { AuthState, onAuthUIStateChange } from "@aws-amplify/ui-components";
 import awsconfig from "./../aws-exports";
 
@@ -126,7 +126,9 @@ function Admin({ ...rest }) {
     </div>
   ) : (
     <div className={classes.mainPanel} ref={mainPanel}>
-      <AmplifyAuthenticator />
+      <AmplifyAuthenticator>
+        <AmplifySignIn hideSignUp="true" slot="sign-in" />
+      </AmplifyAuthenticator>
     </div>
   );
 }
