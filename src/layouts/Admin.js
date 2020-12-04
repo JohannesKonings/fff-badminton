@@ -18,7 +18,8 @@ import bgImage from "assets/img/sidebar-2.jpg";
 import logo from "assets/img/fff.png";
 
 import Amplify from "aws-amplify";
-import { withAuthenticator } from "@aws-amplify/ui-react";
+import { AmplifyAuthenticator } from "@aws-amplify/ui-react";
+import { AuthState, onAuthUIStateChange } from "@aws-amplify/ui-components";
 import awsconfig from "./../aws-exports";
 
 Amplify.configure(awsconfig);
@@ -51,6 +52,8 @@ function Admin({ ...rest }) {
   // ref to help us initialize PerfectScrollbar on windows devices
   const mainPanel = React.createRef();
   // states and functions
+  const [authState, setAuthState] = React.useState();
+  const [user, setUser] = React.useState();
   const [image] = React.useState(bgImage);
   const [color] = React.useState("blue");
   const [mobileOpen, setMobileOpen] = React.useState(false);
@@ -65,6 +68,14 @@ function Admin({ ...rest }) {
       setMobileOpen(false);
     }
   };
+
+  React.useEffect(() => {
+    return onAuthUIStateChange((nextAuthState, authData) => {
+      setAuthState(nextAuthState);
+      setUser(authData);
+    });
+  }, []);
+
   // initialize and destroy the PerfectScrollbar plugin
   React.useEffect(() => {
     if (navigator.platform.indexOf("Win") > -1) {
@@ -84,7 +95,7 @@ function Admin({ ...rest }) {
     };
   }, [mainPanel]);
 
-  return (
+  return authState === AuthState.SignedIn && user ? (
     <div className={classes.wrapper}>
       <Sidebar
         routes={routes}
@@ -113,7 +124,11 @@ function Admin({ ...rest }) {
         {getRoute() ? <Footer /> : null}
       </div>
     </div>
+  ) : (
+    <div className={classes.mainPanel} ref={mainPanel}>
+      <AmplifyAuthenticator />
+    </div>
   );
 }
 
-export default withAuthenticator(Admin, false);
+export default Admin;
