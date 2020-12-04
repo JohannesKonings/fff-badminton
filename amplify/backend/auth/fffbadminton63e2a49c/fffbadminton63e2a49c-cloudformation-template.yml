@@ -13,87 +13,117 @@ Parameters:
     
   identityPoolName:
     Type: String
-                
+  
+            
+  
   allowUnauthenticatedIdentities:
     Type: String
             
   resourceNameTruncated:
     Type: String
-              
+  
+            
   userPoolName:
     Type: String
-                      
+  
+            
+        
   autoVerifiedAttributes:
     Type: CommaDelimitedList
       
   mfaConfiguration:
     Type: String
-                      
+  
+            
+        
   mfaTypes:
     Type: CommaDelimitedList
       
   smsAuthenticationMessage:
     Type: String
-              
+  
+            
   smsVerificationMessage:
     Type: String
-              
+  
+            
   emailVerificationSubject:
     Type: String
-              
+  
+            
   emailVerificationMessage:
     Type: String
-                
+  
+            
+  
   defaultPasswordPolicy:
     Type: String
-                
+            
+    
   passwordPolicyMinLength:
     Type: Number
-                  
+          
+        
   passwordPolicyCharacters:
     Type: CommaDelimitedList
-              
+      
+        
   requiredAttributes:
     Type: CommaDelimitedList
-        
+      
+  
   userpoolClientGenerateSecret:
     Type: String
-                
+            
+    
   userpoolClientRefreshTokenValidity:
     Type: Number
-                  
+          
+        
   userpoolClientWriteAttributes:
     Type: CommaDelimitedList
-              
+      
+        
   userpoolClientReadAttributes:
     Type: CommaDelimitedList
       
   userpoolClientLambdaRole:
     Type: String
-                
+  
+            
+  
   userpoolClientSetAttributes:
     Type: String
             
   resourceName:
     Type: String
-              
+  
+            
   authSelections:
     Type: String
-                                      
+  
+            
+            
+            
   useDefault:
     Type: String
-                      
+  
+            
+        
   userPoolGroupList:
     Type: CommaDelimitedList
-              
+      
+        
   dependsOn:
     Type: CommaDelimitedList
-        
+      
+  
   hostedUI:
     Type: String
-  
+            
+        
   hostedUIProviderCreds:
-    Type: String
+    Type: CommaDelimitedList
       
 Conditions:
   ShouldNotCreateEnvResources: !Equals [ !Ref env, NONE ]
