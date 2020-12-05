@@ -121,10 +121,6 @@ Parameters:
   hostedUI:
     Type: String
             
-        
-  hostedUIProviderCreds:
-    Type: CommaDelimitedList
-      
 Conditions:
   ShouldNotCreateEnvResources: !Equals [ !Ref env, NONE ]
 
