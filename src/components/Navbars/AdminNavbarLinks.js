@@ -42,7 +42,7 @@ export default function AdminNavbarLinks() {
   const classes = useStyles();
   const [openNotification, setOpenNotification] = React.useState(null);
   const [openProfile, setOpenProfile] = React.useState(null);
-  const handleClickNotification = event => {
+  const handleClickNotification = (event) => {
     if (openNotification && openNotification.contains(event.target)) {
       setOpenNotification(null);
     } else {
@@ -52,7 +52,7 @@ export default function AdminNavbarLinks() {
   const handleCloseNotification = () => {
     setOpenNotification(null);
   };
-  const handleClickProfile = event => {
+  const handleClickProfile = (event) => {
     if (openProfile && openProfile.contains(event.target)) {
       setOpenProfile(null);
     } else {
@@ -72,13 +72,13 @@ export default function AdminNavbarLinks() {
       <div className={classes.searchWrapper}>
         <CustomInput
           formControlProps={{
-            className: classes.margin + " " + classes.search
+            className: classes.margin + " " + classes.search,
           }}
           inputProps={{
             placeholder: "Search",
             inputProps: {
-              "aria-label": "Search"
-            }
+              "aria-label": "Search",
+            },
           }}
         />
         <Button color="white" aria-label="edit" justIcon round>
@@ -120,7 +120,7 @@ export default function AdminNavbarLinks() {
               id="notification-menu-list-grow"
               style={{
                 transformOrigin:
-                  placement === "bottom" ? "center top" : "center bottom"
+                  placement === "bottom" ? "center top" : "center bottom",
               }}
             >
               <Paper>
@@ -196,7 +196,7 @@ export default function AdminNavbarLinks() {
               id="profile-menu-list-grow"
               style={{
                 transformOrigin:
-                  placement === "bottom" ? "center top" : "center bottom"
+                  placement === "bottom" ? "center top" : "center bottom",
               }}
             >
               <Paper>

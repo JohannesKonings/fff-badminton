@@ -30,29 +30,29 @@ const dashboardRoutes = [
     name: "Dashboard",
     icon: Dashboard,
     component: DashboardPage,
-    layout: "/admin"
+    layout: "/admin",
   },
   {
     path: "/user",
     name: "User Profile",
     icon: Person,
     component: UserProfile,
-    layout: "/admin"
+    layout: "/admin",
   },
   {
     path: "/player",
     name: "Player",
     icon: "accessible",
     component: Player,
-    layout: "/admin"
+    layout: "/admin",
   },
   {
     path: "/games",
     name: "Games",
     icon: "find_replace",
     component: Games,
-    layout: "/admin"
-  }
+    layout: "/admin",
+  },
 ];
 
 export default dashboardRoutes;

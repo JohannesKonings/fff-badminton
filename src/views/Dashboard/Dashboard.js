@@ -63,7 +63,7 @@ export default function Dashboard() {
   }
 
   const getNumberOfGameDays = async () => {
-    const gameDayList = allGamesItems.flatMap(item => [item.gameday.id]);
+    const gameDayList = allGamesItems.flatMap((item) => [item.gameday.id]);
     setNumberOfGameDays(countUnique(gameDayList));
 
     const sortedDates = gameDayList.sort();
@@ -77,10 +77,10 @@ export default function Dashboard() {
   const getAverageParticipants = async () => {
     let gameDayPlayerCombined = [];
 
-    let gameDayPlayer1 = allGamesItems.map(item => {
+    let gameDayPlayer1 = allGamesItems.map((item) => {
       return [item.gameday.id, item.player1.id];
     });
-    let gameDayPlayer2 = allGamesItems.map(item => {
+    let gameDayPlayer2 = allGamesItems.map((item) => {
       return [item.gameday.id, item.player2.id];
     });
     gameDayPlayerCombined.push(...gameDayPlayer1);
@@ -89,7 +89,7 @@ export default function Dashboard() {
     let set = new Set(gameDayPlayerCombined.map(JSON.stringify));
     let gameDayPlayerCombinedUnique = Array.from(set).map(JSON.parse);
 
-    const gameDayList = gameDayPlayerCombined.flatMap(item => [item[0]]);
+    const gameDayList = gameDayPlayerCombined.flatMap((item) => [item[0]]);
     let numberOfGameDays = countUnique(gameDayList);
 
     if (numberOfGameDays !== 0) {
@@ -99,9 +99,9 @@ export default function Dashboard() {
     }
   };
 
-  const calculateTrainingsList = list => {
+  const calculateTrainingsList = (list) => {
     var gamesListNo = [];
-    list.reduce(function(res, value) {
+    list.reduce(function (res, value) {
       if (!res[value]) {
         res[value] = { name: value, no: 0 };
         gamesListNo.push(res[value]);
@@ -112,7 +112,7 @@ export default function Dashboard() {
 
     gamesListNo.sort((a, b) => b.no - a.no);
 
-    let trainingsList = gamesListNo.map(item => {
+    let trainingsList = gamesListNo.map((item) => {
       return [item.name, item.no.toString()];
     });
 
@@ -120,14 +120,14 @@ export default function Dashboard() {
   };
 
   const createTrainingsList = async () => {
-    const gamesList = allGamesItems.flatMap(item => [
+    const gamesList = allGamesItems.flatMap((item) => [
       item.gameday.id + item.player1.name,
-      item.gameday.id + item.player2.name
+      item.gameday.id + item.player2.name,
     ]);
     let gameDayListUnique = [...new Set(gamesList)];
-    gameDayListUnique = gameDayListUnique.map(x => x.substring(10));
+    gameDayListUnique = gameDayListUnique.map((x) => x.substring(10));
 
-    const gameListUnique = gamesList.map(x => x.substring(10));
+    const gameListUnique = gamesList.map((x) => x.substring(10));
 
     let trainingsList;
     trainingsList = calculateTrainingsList(gameDayListUnique);
@@ -137,25 +137,25 @@ export default function Dashboard() {
   };
 
   const createEwigeTabelle = async () => {
-    const flatGameList = allGamesItems.flatMap(item => [
+    const flatGameList = allGamesItems.flatMap((item) => [
       [
         item.player1.name,
         item.resultPlayer1 > item.resultPlayer2 ? 1 : 0,
         item.resultPlayer1 > item.resultPlayer2 ? 0 : 1,
         item.resultPlayer1,
-        item.resultPlayer2
+        item.resultPlayer2,
       ],
       [
         item.player2.name,
         item.resultPlayer2 > item.resultPlayer1 ? 1 : 0,
         item.resultPlayer2 > item.resultPlayer1 ? 0 : 1,
         item.resultPlayer2,
-        item.resultPlayer1
-      ]
+        item.resultPlayer1,
+      ],
     ]);
 
     let gamesListNo = [];
-    flatGameList.reduce(function(res, value) {
+    flatGameList.reduce(function (res, value) {
       const name = value[0];
       if (!res[name]) {
         res[name] = {
@@ -163,7 +163,7 @@ export default function Dashboard() {
           gewonnen: 0,
           verloren: 0,
           punkte: 0,
-          gegenpunkte: 0
+          gegenpunkte: 0,
         };
         gamesListNo.push(res[name]);
       }
@@ -174,13 +174,13 @@ export default function Dashboard() {
       return res;
     }, {});
 
-    const ewigeTabelle = gamesListNo.map(item => {
+    const ewigeTabelle = gamesListNo.map((item) => {
       return [
         item.name,
         item.gewonnen.toString(),
         item.verloren.toString(),
         item.punkte.toString(),
-        item.gegenpunkte.toString()
+        item.gegenpunkte.toString(),
       ];
     });
 
@@ -195,7 +195,7 @@ export default function Dashboard() {
         1: (a, b) => b - a,
         2: (a, b) => a - b,
         3: (a, b) => b - a,
-        4: (a, b) => a - b
+        4: (a, b) => a - b,
       })
     );
 
@@ -220,7 +220,7 @@ export default function Dashboard() {
                 <Danger>
                   <Warning />
                 </Danger>
-                <a href="#pablo" onClick={e => e.preventDefault()}>
+                <a href="#pablo" onClick={(e) => e.preventDefault()}>
                   Since {firstGameDayDate}
                 </a>
               </div>
@@ -267,7 +267,7 @@ export default function Dashboard() {
                   "gewonnen",
                   "verloren",
                   "Punkte",
-                  "Gegenpunkte"
+                  "Gegenpunkte",
                 ]}
                 tableData={ewigeTabelle}
               />

@@ -21,7 +21,7 @@ export default function Header(props) {
   const classes = useStyles();
   function makeBrand() {
     var name;
-    props.routes.map(prop => {
+    props.routes.map((prop) => {
       if (window.location.href.indexOf(prop.layout + prop.path) !== -1) {
         name = prop.name;
       }
@@ -31,7 +31,7 @@ export default function Header(props) {
   }
   const { color } = props;
   const appBarClasses = classNames({
-    [" " + classes[color]]: color
+    [" " + classes[color]]: color,
   });
   return (
     <AppBar className={classes.appBar + appBarClasses}>
@@ -62,5 +62,5 @@ export default function Header(props) {
 Header.propTypes = {
   color: PropTypes.oneOf(["primary", "info", "success", "warning", "danger"]),
   handleDrawerToggle: PropTypes.func,
-  routes: PropTypes.arrayOf(PropTypes.object)
+  routes: PropTypes.arrayOf(PropTypes.object),
 };

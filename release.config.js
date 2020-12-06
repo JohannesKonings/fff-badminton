@@ -6,16 +6,16 @@ module.exports = {
     [
       "@semantic-release/npm",
       {
-        tarballDir: "release"
-      }
+        tarballDir: "release",
+      },
     ],
     [
       "@semantic-release/github",
       {
-        assets: "release/*.tgz"
-      }
+        assets: "release/*.tgz",
+      },
     ],
-    "@semantic-release/git"
+    "@semantic-release/git",
   ],
-  preset: "angular"
+  preset: "angular",
 };

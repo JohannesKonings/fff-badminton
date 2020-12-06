@@ -27,7 +27,7 @@ const styles = {
     margin: "0",
     fontSize: "14px",
     marginTop: "0",
-    marginBottom: "0"
+    marginBottom: "0",
   },
   cardTitleWhite: {
     color: "#FFFFFF",
@@ -36,8 +36,8 @@ const styles = {
     fontWeight: "300",
     fontFamily: "'Roboto', 'Helvetica', 'Arial', sans-serif",
     marginBottom: "3px",
-    textDecoration: "none"
-  }
+    textDecoration: "none",
+  },
 };
 
 const useStyles = makeStyles(styles);
@@ -65,22 +65,22 @@ export default function UserProfile() {
 
   const getProfilePicture = () => {
     Storage.get("profilePicture.png")
-      .then(url => {
+      .then((url) => {
         var myRequest = new Request(url);
-        fetch(myRequest).then(function(response) {
+        fetch(myRequest).then(function (response) {
           if (response.status === 200) {
             setImage(url);
           }
         });
       })
-      .catch(err => console.log(err));
+      .catch((err) => console.log(err));
   };
 
-  const onChangeEmail = e => {
+  const onChangeEmail = (e) => {
     setEmail(e.target.value);
   };
 
-  const onChangeUsername = e => {
+  const onChangeUsername = (e) => {
     setUsername(e.target.value);
   };
 
@@ -90,7 +90,7 @@ export default function UserProfile() {
     fileInput.current.click();
   };
 
-  const onProcessFile = e => {
+  const onProcessFile = (e) => {
     e.preventDefault();
     let reader = new FileReader();
     let file = e.target.files[0];
@@ -103,10 +103,10 @@ export default function UserProfile() {
       setImage(reader.result);
     };
     Storage.put("profilePicture.png", file, {
-      contentType: "image/png"
+      contentType: "image/png",
     })
-      .then(result => console.log(result))
-      .catch(err => console.log(err));
+      .then((result) => console.log(result))
+      .catch((err) => console.log(err));
   };
 
   const classes = useStyles();
@@ -126,11 +126,11 @@ export default function UserProfile() {
                     labelText="Cognito Id"
                     id="cognito-id"
                     formControlProps={{
-                      fullWidth: true
+                      fullWidth: true,
                     }}
                     inputProps={{
                       disabled: true,
-                      value: cognitoId
+                      value: cognitoId,
                     }}
                   />
                 </GridItem>
@@ -139,11 +139,11 @@ export default function UserProfile() {
                     labelText="Username"
                     id="username"
                     formControlProps={{
-                      fullWidth: true
+                      fullWidth: true,
                     }}
                     inputProps={{
                       value: username,
-                      onChange: onChangeUsername
+                      onChange: onChangeUsername,
                     }}
                   />
                 </GridItem>
@@ -152,11 +152,11 @@ export default function UserProfile() {
                     labelText="Email address"
                     id="email-address"
                     formControlProps={{
-                      fullWidth: true
+                      fullWidth: true,
                     }}
                     inputProps={{
                       value: email,
-                      onChange: onChangeEmail
+                      onChange: onChangeEmail,
                     }}
                   />
                 </GridItem>
@@ -167,7 +167,7 @@ export default function UserProfile() {
                     labelText="First Name"
                     id="first-name"
                     formControlProps={{
-                      fullWidth: true
+                      fullWidth: true,
                     }}
                   />
                 </GridItem>
@@ -176,7 +176,7 @@ export default function UserProfile() {
                     labelText="Last Name"
                     id="last-name"
                     formControlProps={{
-                      fullWidth: true
+                      fullWidth: true,
                     }}
                   />
                 </GridItem>
@@ -187,7 +187,7 @@ export default function UserProfile() {
                     labelText="City"
                     id="city"
                     formControlProps={{
-                      fullWidth: true
+                      fullWidth: true,
                     }}
                   />
                 </GridItem>
@@ -196,7 +196,7 @@ export default function UserProfile() {
                     labelText="Country"
                     id="country"
                     formControlProps={{
-                      fullWidth: true
+                      fullWidth: true,
                     }}
                   />
                 </GridItem>
@@ -205,7 +205,7 @@ export default function UserProfile() {
                     labelText="Postal Code"
                     id="postal-code"
                     formControlProps={{
-                      fullWidth: true
+                      fullWidth: true,
                     }}
                   />
                 </GridItem>
@@ -217,11 +217,11 @@ export default function UserProfile() {
                     labelText="Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo."
                     id="about-me"
                     formControlProps={{
-                      fullWidth: true
+                      fullWidth: true,
                     }}
                     inputProps={{
                       multiline: true,
-                      rows: 5
+                      rows: 5,
                     }}
                   />
                 </GridItem>

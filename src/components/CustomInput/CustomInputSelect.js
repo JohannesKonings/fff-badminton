@@ -12,15 +12,14 @@ const useStyles = makeStyles(styles);
 
 export default function CustomInputSelect(props) {
   const classes = useStyles();
-  const [value, setValue] = React.useState('');
+  const [value, setValue] = React.useState("");
 
   const { labelText, id, formControlProps, menuItems, textFieldValue } = props;
 
-  const handleChange = event => {
+  const handleChange = (event) => {
     setValue(event.target.value);
-    textFieldValue(event.target.value)
+    textFieldValue(event.target.value);
   };
-
 
   return (
     <FormControl
@@ -34,7 +33,7 @@ export default function CustomInputSelect(props) {
         value={value}
         onChange={handleChange}
       >
-        {menuItems.map(option => (
+        {menuItems.map((option) => (
           <MenuItem key={option.id} value={option.id}>
             {option.name}
           </MenuItem>
@@ -51,5 +50,7 @@ CustomInputSelect.propTypes = {
   inputProps: PropTypes.object,
   formControlProps: PropTypes.object,
   error: PropTypes.bool,
-  success: PropTypes.bool
+  success: PropTypes.bool,
+  menuItems: PropTypes.object,
+  textFieldValue: PropTypes.object,
 };

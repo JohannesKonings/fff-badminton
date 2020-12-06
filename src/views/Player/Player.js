@@ -23,11 +23,11 @@ const styles = {
       margin: "0",
       fontSize: "14px",
       marginTop: "0",
-      marginBottom: "0"
+      marginBottom: "0",
     },
     "& a,& a:hover,& a:focus": {
-      color: "#FFFFFF"
-    }
+      color: "#FFFFFF",
+    },
   },
   cardTitleWhite: {
     color: "#FFFFFF",
@@ -41,9 +41,9 @@ const styles = {
       color: "#777",
       fontSize: "65%",
       fontWeight: "400",
-      lineHeight: "1"
-    }
-  }
+      lineHeight: "1",
+    },
+  },
 };
 
 const useStyles = makeStyles(styles);
@@ -61,11 +61,11 @@ function Player() {
     const allPlayerItems = allPlayers.data.listPlayers.items;
 
     console.log("sortPlayers");
-    allPlayerItems.sort(function(a, b) {
+    allPlayerItems.sort(function (a, b) {
       return a.id - b.id;
     });
 
-    const tableArray = allPlayerItems.map(item => {
+    const tableArray = allPlayerItems.map((item) => {
       console.log(item.id, item.name);
       return [item.id, item.name];
     });

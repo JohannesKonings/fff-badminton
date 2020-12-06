@@ -3,20 +3,28 @@ module.exports = {
   env: {
     es6: true,
     node: true,
-    browser: true
+    browser: true,
   },
   parserOptions: {
     ecmaVersion: 6,
     sourceType: "module",
     ecmaFeatures: {
-      jsx: true
-    }
+      jsx: true,
+    },
   },
   plugins: ["react"],
   extends: [
     "eslint:recommended",
     "plugin:react/recommended",
     "plugin:prettier/recommended",
-    "plugin:cypress/recommended"
-  ]
+    "plugin:cypress/recommended",
+  ],
+  rules: {
+    "prettier/prettier": [
+      "error",
+      {
+        endOfLine: "auto",
+      },
+    ],
+  },
 };

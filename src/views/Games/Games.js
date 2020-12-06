@@ -92,8 +92,8 @@ function Games() {
     const allGameDayItems = allGameDays.data.listGamedays.items;
 
     allGameDayItems.sort((a, b) => {
-      const dateA = a.id.replace(/-/g,'');
-      const dateB = b.id.replace(/-/g,'');
+      const dateA = a.id.replace(/-/g, "");
+      const dateB = b.id.replace(/-/g, "");
       return dateA - dateB;
     });
 
