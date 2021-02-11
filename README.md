@@ -23,7 +23,7 @@ The documentation for the Material Dashboard React is hosted at our [website](ht
 
 # Technical description of the webapp
 
-https://dev.to/johanneskonings/aws-amplify-api-graphql-mutation-5ba4
+https://dev.to/johanneskonings/series/5661
 
 # development
 
