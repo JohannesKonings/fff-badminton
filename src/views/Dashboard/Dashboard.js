@@ -46,7 +46,11 @@ export default function Dashboard() {
   const [firstGameDayDate, setFirstGameDayDate] = useState();
 
   const readAllGames = async () => {
-    const allGames = await API.graphql(graphqlOperation(listGames));
+    const allGames = await API.graphql(
+      graphqlOperation(listGames, {
+        limit: 999,
+      })
+    );
     setGamesItems(allGames.data.listGames.items);
   };
 
