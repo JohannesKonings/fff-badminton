@@ -1,6 +1,6 @@
 #file from root
 version: 0.1
-backend: 
+backend:
   phases:
     build:
       commands:
@@ -11,12 +11,12 @@ frontend:
   phases:
     preBuild:
       commands:
-        #- npm ci
+        - npm ci
         #- npm install bower
         #- ./node_modules/bower/bin/bower install
     build:
       commands:
-        - npm install
+        #- npm install
         - npm run build
         #- node ./node_modules/gulp/bin/gulp.js
   artifacts:
