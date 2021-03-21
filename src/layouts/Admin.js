@@ -17,12 +17,12 @@ import styles from "assets/jss/material-dashboard-react/layouts/adminStyle.js";
 import bgImage from "assets/img/sidebar-2.jpg";
 import logo from "assets/img/fff.png";
 
-import Amplify from "aws-amplify";
+import { Auth } from "aws-amplify";
 import { AmplifyAuthenticator, AmplifySignIn } from "@aws-amplify/ui-react";
 import { AuthState, onAuthUIStateChange } from "@aws-amplify/ui-components";
 import awsconfig from "./../aws-exports";
 
-Amplify.configure(awsconfig);
+Auth.configure(awsconfig);
 
 let ps;
 
