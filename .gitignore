@@ -26,6 +26,9 @@ yarn-error.log*
 #cypress
 cypress.env.json
 
+# eslint
+.eslintcache
+
 #amplify
 amplify/\#current-cloud-backend
 amplify/.config/local-*
