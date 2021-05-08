@@ -16,7 +16,7 @@
     "aws-amplify": "^3.3.27",
     "chartist": "0.11.4",
     "classnames": "2.3.1",
-    "date-fns": "^2.21.2",
+    "date-fns": "^2.21.3",
     "history": "5.0.0",
     "notistack": "1.0.6",
     "perfect-scrollbar": "1.5.0",
