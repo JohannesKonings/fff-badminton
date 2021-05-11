@@ -71,7 +71,7 @@
     "eslint-plugin-react": "^7.23.2",
     "gulp": "4.0.2",
     "gulp-append-prepend": "1.0.9",
-    "prettier": "2.2.1",
+    "prettier": "2.3.0",
     "semantic-release": "^17.4.2"
   },
   "browserslist": {
