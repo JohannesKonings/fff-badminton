@@ -19,7 +19,7 @@
     "date-fns": "^2.21.3",
     "history": "5.0.0",
     "notistack": "1.0.7",
-    "perfect-scrollbar": "1.5.0",
+    "perfect-scrollbar": "1.5.1",
     "prop-types": "15.7.2",
     "react": "17.0.2",
     "react-chartist": "0.14.4",
@@ -72,7 +72,7 @@
     "gulp": "4.0.2",
     "gulp-append-prepend": "1.0.9",
     "prettier": "2.3.0",
-    "semantic-release": "^17.4.2"
+    "semantic-release": "^17.4.3"
   },
   "browserslist": {
     "production": [
