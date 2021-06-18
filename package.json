@@ -6,7 +6,7 @@
   "main": "dist/index.js",
   "dependencies": {
     "@aws-amplify/auth": "^4.0.1",
-    "@aws-amplify/cache": "^4.0.3",
+    "@aws-amplify/cache": "^4.0.5",
     "@aws-amplify/core": "^4.0.3",
     "@aws-amplify/ui-react": "^1.2.1",
     "@date-io/date-fns": "2.10.11",
