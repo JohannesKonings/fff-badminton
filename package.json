@@ -19,7 +19,7 @@
     "date-fns": "^2.25.0",
     "history": "5.0.0",
     "notistack": "1.0.10",
-    "perfect-scrollbar": "1.5.2",
+    "perfect-scrollbar": "1.5.3",
     "prop-types": "15.7.2",
     "react": "17.0.2",
     "react-chartist": "0.14.4",
