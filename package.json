@@ -17,7 +17,7 @@
     "chartist": "0.11.4",
     "classnames": "2.3.1",
     "date-fns": "^2.25.0",
-    "history": "5.0.3",
+    "history": "5.1.0",
     "notistack": "1.0.10",
     "perfect-scrollbar": "1.5.3",
     "prop-types": "15.7.2",
