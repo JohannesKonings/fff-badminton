@@ -72,7 +72,7 @@
     "gulp": "4.0.2",
     "gulp-append-prepend": "1.0.9",
     "prettier": "2.4.1",
-    "semantic-release": "^18.0.0"
+    "semantic-release": "^19.0.4"
   },
   "browserslist": {
     "production": [
